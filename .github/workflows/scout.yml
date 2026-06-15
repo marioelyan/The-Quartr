@@ -19,6 +19,51 @@ jobs:
         run: |
           pip install feedparser beautifulsoup4
 
+      - name: Run script (scrape)
+        run: python script_research.py
+
+      - name: Install OpenAI (untuk DeepSeek)
+        run: pip install openai
+
+      - name: Run curator (pilih 5 berita)
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: python curator.py
+
+      - name: Kirim news.json ke Telegram
+        run: |
+          if [ ! -f news.json ]; then
+            echo "news.json tidak ditemukan!"
+            exit 1
+          fi
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
+            -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -F document="@news.json" \
+            -F caption="✅ RSS Scout selesai pada $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: Kirim top5.json ke Telegram
+        run: |
+          if [ -f top5.json ]; then
+            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
+              -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+              -F document="@top5.json" \
+              -F caption="✅ Top 5 berita terpilih oleh DeepSeek"
+          else
+            echo "top5.json tidak ditemukan, lewati pengiriman."
+          fi
+
+      - name: Upload JSON as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-data
+          path: |
+            news.json
+            top5.json
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser beautifulsoup4
+
       - name: Run script
         run: python script_research.py
 
