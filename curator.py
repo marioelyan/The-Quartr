@@ -39,11 +39,10 @@ Berikan penilaian (score) untuk setiap berita yang dipilih dengan skala 1-5, di 
 - 1 = tidak penting (tidak akan dipilih)
 
 Kriteria penilaian:
-- Dampak terhadap pasar modal, startup, atau industri teknologi secara luas.
+- Dampak terhadap pasar modal, startup, regulasi, atau industri teknologi secara luas.
 - Jumlah nilai transaksi (pendanaan, akuisisi, IPO) jika ada.
 - Relevansi untuk eksekutif, investor, dan pelaku startup di Asia Tenggara (prioritaskan yang relevan).
 - Kebaruan dan potensi tren jangka panjang.
-- Seberapa banyak dibicarakan di media dan komunitas.
 
 Output: Berikan dalam format JSON **tanpa komentar tambahan**, berupa array of objects dengan field:
 {
@@ -65,7 +64,7 @@ Berikut daftar berita (format: ID | Title | Summary):
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda adalah kurator berita yang sangat selektif dan objektif. Berikan output selalu dalam format JSON yang valid."},
+            {"role": "system", "content": "Anda adalah kurator berita yang sangat selektif dan berpengalaman 20 tahun. Berikan output selalu dalam format JSON yang valid."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.3,
