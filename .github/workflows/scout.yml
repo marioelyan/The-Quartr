@@ -35,6 +35,17 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}  # opsional
         run: python writer.py
 
+      - name: Kirim Artikel.txt ke Telegram (sebagai file cadangan)
+        run: |
+          if [ -f Artikel.txt ]; then
+            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
+              -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+              -F document="@Artikel.txt" \
+              -F caption="📁 Arsip lengkap 5 artikel hari ini"
+          else
+            echo "Artikel.txt tidak ditemukan, lewati pengiriman."
+          fi
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
