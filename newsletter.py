@@ -17,19 +17,13 @@ def get_date_formatted():
     tz_wib = timezone(timedelta(hours=7))
     return datetime.now(tz_wib).strftime("%A, %d %B %Y")
 
-def load_top5(filename="top5.json"):
-    with open(filename, "r", encoding="utf-8") as f:
-        return json.load(f)
-
 def load_articles_txt(filename="Artikel.txt"):
     """
     Parsing Artikel.txt dengan format:
-    📰 ARTIKEL #1
-
+    📰 ARTIKEL #N
     Judul: ...
     Subtitle: ...
-    Konten:
-    [isi artikel]
+    [isi artikel (tanpa label Konten:)]
     Kalimat SEO: ...
     Tags: ...
     Assets: ...
@@ -37,50 +31,41 @@ def load_articles_txt(filename="Artikel.txt"):
     try:
         with open(filename, "r", encoding="utf-8") as f:
             content = f.read()
-    except:
+    except FileNotFoundError:
+        print(f"⚠️ File {filename} tidak ditemukan.")
         return []
 
     articles = []
-    # Split berdasarkan ARTIKEL #N
+    # Split berdasarkan "📰 ARTIKEL #N"
     blocks = re.split(r'📰 ARTIKEL #\d+\n+', content)
     for block in blocks[1:]:  # skip header
         lines = block.strip().split('\n')
-        article = {}
-        current_key = None
-        current_value = []
+        title = ""
+        subtitle = ""
+        content_lines = []
+        in_content = False
 
         for line in lines:
-            if line.startswith('Judul: '):
-                if current_key:
-                    article[current_key] = '\n'.join(current_value).strip()
-                current_key = 'title'
-                current_value = [line.replace('Judul: ', '')]
-            elif line.startswith('Subtitle: '):
-                if current_key:
-                    article[current_key] = '\n'.join(current_value).strip()
-                current_key = 'subtitle'
-                current_value = [line.replace('Subtitle: ', '')]
-            elif line.startswith('Konten:'):
-                if current_key:
-                    article[current_key] = '\n'.join(current_value).strip()
-                current_key = 'content'
-                current_value = []
-            elif line.startswith('Kalimat SEO:') or line.startswith('Tags:') or line.startswith('Assets'):
-                # Simpan current content sebelum berakhir
-                if current_key == 'content':
-                    article[current_key] = '\n'.join(current_value).strip()
-                current_key = None
-                current_value = []
-            else:
-                if current_key:
-                    current_value.append(line)
+            stripped = line.strip()
+            if stripped.startswith('Judul: '):
+                title = stripped.replace('Judul: ', '').strip()
+            elif stripped.startswith('Subtitle: '):
+                subtitle = stripped.replace('Subtitle: ', '').strip()
+                in_content = True  # setelah subtitle, konten dimulai
+            elif stripped.startswith('Kalimat SEO:') or stripped.startswith('Tags:') or stripped.startswith('Assets'):
+                in_content = False  # konten berakhir
+            elif in_content:
+                # Simpan baris konten (termasuk indentasi/spasi)
+                content_lines.append(line)
 
-        # Simpan sisa
-        if current_key and current_key == 'content':
-            article[current_key] = '\n'.join(current_value).strip()
-
-        if article:
-            articles.append(article)
+        # Gabungkan konten (hilangkan baris kosong di awal/akhir)
+        content_text = '\n'.join(content_lines).strip()
+        if title or content_text:
+            articles.append({
+                'title': title,
+                'subtitle': subtitle,
+                'content': content_text
+            })
 
     return articles
 
@@ -246,24 +231,24 @@ def format_newsletter(articles, hook, quarter_time, quiz_data, subject, date):
     return text
 
 if __name__ == "__main__":
-    print("📖 Membaca top5.json...")
-    top5 = load_top5()
-    if not top5:
-        print("❌ top5.json tidak ditemukan. Jalankan curator dulu.")
-        exit(0)
-
     print("📖 Membaca Artikel.txt untuk konten...")
     articles = load_articles_txt("Artikel.txt")
     if not articles:
         print("⚠️ Artikel.txt tidak ditemukan atau kosong. Gunakan data dari top5.json.")
         # Fallback: gunakan top5
-        articles = []
-        for item in top5:
-            articles.append({
-                "title": item.get("title", ""),
-                "subtitle": item.get("reason", ""),
-                "content": item.get("summary", "")
-            })
+        try:
+            with open("top5.json", "r", encoding="utf-8") as f:
+                top5 = json.load(f)
+            articles = []
+            for item in top5:
+                articles.append({
+                    "title": item.get("title", ""),
+                    "subtitle": item.get("reason", ""),
+                    "content": item.get("summary", "")
+                })
+        except:
+            print("❌ Gagal memuat data. Keluar.")
+            exit(1)
 
     print("🤖 Menghasilkan hook...")
     hook = generate_hook(articles)
