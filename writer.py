@@ -172,7 +172,7 @@ if __name__ == "__main__":
           #  tags=data['tags'],
           #  assets=data.get('assets', [])
         )
-        print(f"  ✅ Terkirim ke Telegram") #
+      #  print(f"  ✅ Terkirim ke Telegram") 
 
         # Simpan ke arsip
         full_archive += format_article_text(data, idx)
