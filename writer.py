@@ -69,7 +69,11 @@ def write_full_article(article, index):
     prompt = f"""Kamu adalah mantan penulis newsletter Morning Brew, berpengalaman lebih dari 10 tahun dalam penulisan berita. 
 Tulislah sebuah artikel berita (total 250–300 kata) berdasarkan berita di bawah ini menggunakan bahasa Indonesia. 
 
-Gaya penulisan: santai tapi tidak lebay, seperti berbicara dengan teman yang pintar tapi bukan ahli. Gunakan bahasa yang mudah dipahami, hindari jargon berlebihan.
+Gaya penulisan: 
+- Santai tapi profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli.
+- Gunakan bahasa yang mudah dipahami.
+- Hindari jargon berlebihan. Gunakan kata "kamu" untuk menyebut pembaca.
+- Hindari kalimat "Kenapa ini penting?" atau kalimat sejenis pada paragraf why it matters. Buat paragraf mengalir.
 
 Struktur narasi (tetapi **tanpa subjudul** – tulis sebagai paragraf yang mengalir, paragraf dipisah menjadi 3-4 bagian):
 1. **Pembuka**: Jelaskan inti berita secara ringkas dan jelas (TL;DR).
