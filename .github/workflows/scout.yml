@@ -35,13 +35,13 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}  # opsional
         run: python writer.py
 
-      - name: Kirim Artikel.txt ke Telegram (sebagai file cadangan)
+      - name: Kirim Artikel.txt ke Telegram
         run: |
           if [ -f Artikel.txt ]; then
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
               -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
               -F document="@Artikel.txt" \
-              -F caption="📊 Laporan Harian The Quartr — $(date -u +'%Y-%m-%d')\n\nRingkasan 5 berita bisnis & teknologi terpilih.\nDisusun untuk eksekutif, investor, dan pengambil keputusan.\n\n▶️ 5 artikel tersedia dalam file terlampir."
+              -F caption=$'📊 Laporan Harian The Quartr — '"$(date -u +'%Y-%m-%d')"$'\n\nRingkasan 5 berita bisnis & teknologi terpilih.\nDisusun untuk eksekutif, investor, dan pengambil keputusan.\n\n▶️ 5 artikel tersedia dalam file terlampir.'
           else
             echo "Artikel.txt tidak ditemukan, lewati pengiriman."
           fi
