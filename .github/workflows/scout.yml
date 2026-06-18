@@ -32,7 +32,7 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}  # opsional
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: python writer.py
 
       - name: Run newsletter (buat newsletter Substack)
@@ -40,15 +40,17 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: python newsletter.py
 
-      - name: Kirim Artikel.txt ke Telegram
+      - name: Buat ZIP dan kirim ke Telegram
         run: |
-          if [ -f Artikel.txt ]; then
+          # Buat ZIP dari semua file output
+          zip -j the-quartr-output.zip news.json top5.json Artikel.txt newsletter_substack.txt
+          if [ -f the-quartr-output.zip ]; then
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
               -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-              -F document="@Artikel.txt" \
-              -F caption=$'📊 Laporan Harian The Quartr — '"$(date -u +'%Y-%m-%d')"$'\n\nRingkasan 5 berita bisnis & teknologi terpilih.\nDisusun untuk eksekutif, investor, dan pengambil keputusan.\n\n▶️ 5 artikel tersedia dalam file terlampir.'
+              -F document="@the-quartr-output.zip" \
+              -F caption=$'📦 The Quartr — '"$(date -u +'%Y-%m-%d')"$'\n\nLengkap: 5 artikel (Artikel.txt), 5 berita terpilih (top5.json), hasil scraping (news.json), dan newsletter Substack (newsletter_substack.txt).\n\n📎 Semua file dalam satu arsip.'
           else
-            echo "Artikel.txt tidak ditemukan, lewati pengiriman."
+            echo "Gagal membuat ZIP, lewati pengiriman."
           fi
 
       - name: Upload artifacts
@@ -60,3 +62,4 @@ jobs:
             top5.json
             Artikel.txt
             newsletter_substack.txt
+            the-quartr-output.zip
