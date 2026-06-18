@@ -37,23 +37,22 @@ def save_article(content, filename="Artikel.txt"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
 
-def send_article_to_telegram(title, subtitle, content, seo, tags, assets):
-    """Kirim satu artikel utuh ke Telegram sebagai pesan terpisah."""
+def send_article_to_telegram(title, subtitle, full_content, seo, tags, assets):
+    """Kirim satu artikel sebagai satu paragraf mengalir."""
     import subprocess
-    
-    # Bangun pesan dengan format Markdown Telegram
+
+    # Gabungkan semua menjadi satu pesan dengan subtitle dan konten
     message = f"*📰 {title}*\n"
-    message += f"_ {subtitle}_\n\n"
-    message += f"{content}\n\n"
-    message += f"🔍 *SEO:* {seo}\n"
+    message += f"_{subtitle}_\n\n"
+    message += full_content
+    message += f"\n\n🔍 *SEO:* {seo}\n"
     message += f"🏷️ *Tags:* {tags}\n"
     if assets:
         message += f"🖼️ *Assets:* {assets[0]}"
-    
-    # Potong jika > 4096 karakter
+
     if len(message) > 4096:
         message = message[:4093] + "..."
-    
+
     subprocess.run([
         "curl", "-s", "-X", "POST",
         f"https://api.telegram.org/bot{os.environ['TELEGRAM_BOT_TOKEN']}/sendMessage",
@@ -67,22 +66,25 @@ def send_article_to_telegram(title, subtitle, content, seo, tags, assets):
 # ================================
 
 def write_full_article(article, index):
-    prompt = f"""Anda adalah penulis senior untuk newsletter "The Quartr" yang berbasis di Indonesia.
+    prompt = f"""Kamu adalah mantan penulis newsletter Morning Brew, berpengalaman lebih dari 10 tahun dalam penulisan berita. 
+Tulislah sebuah artikel berita (total 250–300 kata) berdasarkan berita di bawah ini. 
 
-Tugas: Tulislah artikel berita (300-400 kata) berdasarkan berita di bawah ini dengan mengikuti **Framework 4A**:
+Gaya penulisan: santai tapi tidak lebay, seperti berbicara dengan teman yang pintar tapi bukan ahli. Gunakan bahasa yang mudah dipahami, hindari jargon berlebihan.
 
-1. **Alert**: Paragraf pembuka yang menarik perhatian.
-2. **Analysis**: Analisis dampak makro dan mikro.
-3. **Angle**: Sudut pandang unik untuk pembaca umum.
-4. **Action**: Ajakan atau pertanyaan reflektif.
+Struktur narasi (tetapi **tanpa subjudul** – tulis sebagai paragraf yang mengalir):
+1. **Pembuka**: Jelaskan inti berita secara ringkas dan jelas (TL;DR).
+2. **Tengah**: Uraikan mengapa pembaca harus peduli, apa dampaknya secara konkret (Why it matters).
+3. **Penutup**: Tarik ke perspektif yang lebih luas atau arah tren selanjutnya (Big picture).
+
+Pastikan ketiga bagian ini tersambung dengan mulus, bukan terpotong-potong.
 
 📌 FORMAT OUTPUT (WAJIB):
-- **Judul Alternatif**: Judul baru menarik, tanpa emoticon, max 10 kata.
+- **Judul Alternatif**: Judul baru menarik, tanpa emoticon.
 - **Subtitle**: 1 kalimat, max 15 kata, merangkum esensi.
-- **Konten**: 300-400 kata, paragraf mengalir (Alert → Analysis → Angle → Action).
+- **Konten**: Paragraf utuh 250–300 kata yang mencakup semua bagian di atas.
 - **Kalimat SEO**: 1 kalimat dengan keyword utama.
-- **Tag**: 5-7 kata kunci, dipisahkan koma.
-- **Assets**: 1-2 link gambar gratis (Unsplash/Pexels).
+- **Tag**: 5–7 kata kunci, dipisahkan koma.
+- **Assets**: 1–2 link gambar gratis (Unsplash/Pexels).
 
 📰 DATA BERITA:
 Judul: {article['title']}
@@ -94,7 +96,7 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
 {{
   "title": "judul alternatif",
   "subtitle": "subtitle singkat",
-  "content": "teks artikel lengkap (300-400 kata)",
+  "content": "teks artikel utuh (paragraf mengalir, 250-300 kata)",
   "seo": "kalimat SEO",
   "tags": "tag1, tag2, tag3",
   "assets": ["url_gambar1", "url_gambar2"]
@@ -103,10 +105,10 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda adalah jurnalis berpengalaman dengan gaya santai-informatif. Output selalu JSON valid."},
+            {"role": "system", "content": "Anda adalah penulis berita dengan gaya santai namun cerdas. Output selalu JSON valid."},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.7,
+        temperature=0.6,
         response_format={"type": "json_object"}
     )
 
@@ -115,24 +117,28 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
         if not data.get('assets'):
             keyword = data.get('tags', '').split(',')[0].strip() if data.get('tags') else article['title'][:30]
             data['assets'] = [fetch_asset_image(keyword)]
+        # Pastikan semua field ada
+        for key in ['title', 'subtitle', 'content', 'seo', 'tags', 'assets']:
+            if key not in data:
+                data[key] = ""
         return data
-    except:
-        print(f"Gagal parsing JSON untuk artikel {index}.")
+    except Exception as e:
+        print(f"Gagal parsing JSON untuk artikel {index}: {e}")
         return {
             "title": article['title'],
             "subtitle": "Ringkasan berita hari ini",
-            "content": response.choices[0].message.content[:500],
+            "content": article.get('summary', 'Berita ini penting untuk diikuti.'),
             "seo": article['title'],
             "tags": "berita, teknologi, bisnis",
             "assets": [fetch_asset_image("technology")]
         }
 
 def format_article_text(data, index):
-    """Format untuk file .txt (arsip)."""
+    """Format untuk file .txt (arsip) – paragraf mengalir."""
     text = f"📰 ARTIKEL #{index}\n\n"
     text += f"Judul: {data['title']}\n"
     text += f"Subtitle: {data['subtitle']}\n\n"
-    text += f"Konten:\n{data['content']}\n\n"
+    text += f"{data['content']}\n\n"
     text += f"Kalimat SEO: {data['seo']}\n"
     text += f"Tags: {data['tags']}\n"
     text += f"Assets (Gambar):\n"
@@ -156,21 +162,20 @@ if __name__ == "__main__":
     for idx, article in enumerate(top5_sorted, 1):
         print(f"✍️ Menulis artikel #{idx}: {article['title']}")
         data = write_full_article(article, idx)
-        
-        # Kirim ke Telegram sebagai pesan terpisah
+
+        # Kirim ke Telegram sebagai satu paragraf utuh
         send_article_to_telegram(
             title=data['title'],
             subtitle=data['subtitle'],
-            content=data['content'],
+            full_content=data['content'],
             seo=data['seo'],
             tags=data['tags'],
             assets=data.get('assets', [])
         )
         print(f"  ✅ Terkirim ke Telegram")
-        
+
         # Simpan ke arsip
         full_archive += format_article_text(data, idx)
 
-    # Simpan file arsip
     save_article(full_archive, "Artikel.txt")
     print("✅ Artikel.txt berhasil dibuat.")
