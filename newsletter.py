@@ -36,9 +36,8 @@ def load_articles_txt(filename="Artikel.txt"):
         return []
 
     articles = []
-    # Split berdasarkan "📰 ARTIKEL #N"
     blocks = re.split(r'📰 ARTIKEL #\d+\n+', content)
-    for block in blocks[1:]:  # skip header
+    for block in blocks[1:]:
         lines = block.strip().split('\n')
         title = ""
         subtitle = ""
@@ -51,14 +50,12 @@ def load_articles_txt(filename="Artikel.txt"):
                 title = stripped.replace('Judul: ', '').strip()
             elif stripped.startswith('Subtitle: '):
                 subtitle = stripped.replace('Subtitle: ', '').strip()
-                in_content = True  # setelah subtitle, konten dimulai
+                in_content = True
             elif stripped.startswith('Kalimat SEO:') or stripped.startswith('Tags:') or stripped.startswith('Assets'):
-                in_content = False  # konten berakhir
+                in_content = False
             elif in_content:
-                # Simpan baris konten (termasuk indentasi/spasi)
                 content_lines.append(line)
 
-        # Gabungkan konten (hilangkan baris kosong di awal/akhir)
         content_text = '\n'.join(content_lines).strip()
         if title or content_text:
             articles.append({
@@ -100,10 +97,10 @@ def generate_quarter_time(articles):
 Buatlah konten untuk segmen "Quarter Time" — bagian ringan yang memberikan nilai tambah.
 
 📌 Gaya penulisan:
-- Santai namun profesional, seperti teman yang cerdas.
+- Santai namun profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli. Gunakan kata "kamu" 
 - Jangan gunakan kata slang seperti "lo", "gue", "anjay", dll.
 - Jangan berlebihan atau hiperbola.
-- 1-2 paragraf (80-120 kata), isinya bisa: rekomendasi buku/podcast, kutipan inspiratif, analisis tren, atau fakta menarik.
+- 1-2 paragraf (80-120 kata), isinya bisa: rekomendasi buku/youtube, kutipan inspiratif, analisis tren, atau fakta menarik.
 - Relevan dengan tema berita hari ini.
 
 Berita hari ini:
@@ -129,7 +126,8 @@ Buatlah kuis mini (1 pertanyaan pilihan ganda) berdasarkan berita hari ini.
 📌 Aturan:
 - 1 pertanyaan dengan 4 opsi (A, B, C, D).
 - Pertanyaan harus menarik, tidak terlalu mudah.
-- Sertakan jawaban yang benar.
+- Jangan sertakan jawabannya.
+- Opsi harus relevan dengan berita yang ada.
 
 Format output JSON:
 {{
@@ -157,8 +155,8 @@ Berita hari ini:
         return json.loads(response.choices[0].message.content)
     except:
         return {
-            "question": "Apa berita utama yang paling menarik perhatian Anda hari ini?",
-            "options": ["A. Amazon chip AI", "B. SpaceX akuisisi", "C. Apple Brasil", "D. Startup AI"],
+            "question": "Startup AI mana yang berencana menggalang dana $300 juta dengan valuasi $2 miliar?",
+            "options": ["A. General Intuition", "B. Cursor", "C. SpaceX", "D. Amazon"],
             "answer": "A"
         }
 
@@ -204,8 +202,9 @@ def format_newsletter(articles, hook, quarter_time, quiz_data, subject, date):
         content = art.get('content', '')
         if not content:
             content = "Konten tidak tersedia."
-        text += f"### {idx}. {title}\n"
-        text += f"{content}\n\n"
+        text += f"### {idx}.\n"
+        text += f"**Judul:** {title}\n\n"
+        text += f"**Konten:**\n{content}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
     # Quarter Time
@@ -235,7 +234,6 @@ if __name__ == "__main__":
     articles = load_articles_txt("Artikel.txt")
     if not articles:
         print("⚠️ Artikel.txt tidak ditemukan atau kosong. Gunakan data dari top5.json.")
-        # Fallback: gunakan top5
         try:
             with open("top5.json", "r", encoding="utf-8") as f:
                 top5 = json.load(f)
