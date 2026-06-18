@@ -120,14 +120,29 @@ Berita hari ini:
     return response.choices[0].message.content.strip()
 
 def generate_quiz(articles):
-    prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
-Buatlah kuis mini (1 pertanyaan pilihan ganda) berdasarkan berita hari ini.
+    """
+    Membuat kuis pengetahuan umum (bukan hanya isi berita) yang relevan dengan tema hari ini.
+    Jawaban tetap dihasilkan untuk keperluan internal, tapi tidak ditampilkan di newsletter.
+    """
+    # Ambil topik utama dari judul berita untuk menentukan tema kuis
+    topics = []
+    for art in articles[:5]:
+        title = art.get('title', '')
+        # Ambil kata kunci dari judul
+        for keyword in ['AI', 'chip', 'SpaceX', 'Amazon', 'Nvidia', 'startup', 'investasi', 'robot', 'coding', 'regulasi']:
+            if keyword.lower() in title.lower():
+                topics.append(keyword)
+                break
+    topic = topics[0] if topics else "teknologi"
+
+    prompt = f"""Anda adalah pembuat kuis untuk newsletter "The Quartr". 
+Buatlah 1 pertanyaan pilihan ganda tentang **pengetahuan umum** yang relevan dengan tema berita hari ini.
 
 📌 Aturan:
-- 1 pertanyaan dengan 4 opsi (A, B, C, D).
-- Pertanyaan harus menarik, tidak terlalu mudah.
-- Jangan sertakan jawabannya.
-- Opsi harus relevan dengan berita yang ada.
+- Pertanyaan harus tentang pengetahuan umum (sejarah teknologi, ekonomi, tokoh penting, fakta sains, dll.) yang terkait dengan tema "{topic}".
+- Jangan membuat pertanyaan yang jawabannya ada di dalam berita hari ini.
+- 4 opsi (A, B, C, D), satu jawaban benar.
+- Pertanyaan harus menarik dan tidak terlalu mudah.
 
 Format output JSON:
 {{
@@ -136,7 +151,7 @@ Format output JSON:
   "answer": "A"
 }}
 
-Berita hari ini:
+Tema hari ini (dari judul berita):
 """
     for art in articles[:5]:
         prompt += f"\n- {art.get('title', '')}"
@@ -145,7 +160,7 @@ Berita hari ini:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda pembuat kuis yang kreatif."},
+            {"role": "system", "content": "Anda pembuat kuis dengan wawasan luas."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.7,
@@ -155,9 +170,9 @@ Berita hari ini:
         return json.loads(response.choices[0].message.content)
     except:
         return {
-            "question": "Startup AI mana yang berencana menggalang dana $300 juta dengan valuasi $2 miliar?",
-            "options": ["A. General Intuition", "B. Cursor", "C. SpaceX", "D. Amazon"],
-            "answer": "A"
+            "question": "Siapa pendiri SpaceX?",
+            "options": ["A. Jeff Bezos", "B. Elon Musk", "C. Richard Branson", "D. Bill Gates"],
+            "answer": "B"
         }
 
 def generate_subject(articles):
@@ -214,13 +229,14 @@ def format_newsletter(articles, hook, quarter_time, quiz_data, subject, date):
     text += f"{quarter_time}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
-    # Gamification
+    # Gamification (tanpa jawaban)
     text += "## 🎮 Gamification\n"
     text += f"**Kuis Mini:**\n"
     text += f"{quiz_data.get('question', '')}\n"
     for opt in quiz_data.get('options', []):
         text += f"- {opt}\n"
-    text += f"\n*Jawaban: {quiz_data.get('answer', '')}*\n\n"
+    # Jawaban TIDAK ditampilkan
+    text += "\n*Jawaban akan diumumkan di Instagram Story!* 😉\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
     # Footer
