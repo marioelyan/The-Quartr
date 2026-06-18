@@ -41,7 +41,7 @@ jobs:
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
               -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
               -F document="@Artikel.txt" \
-              -F caption="📁 Arsip lengkap 5 artikel hari ini"
+              -F caption="📊 Laporan Harian The Quartr — $(date -u +'%Y-%m-%d')\n\nRingkasan 5 berita bisnis & teknologi terpilih.\nDisusun untuk eksekutif, investor, dan pengambil keputusan.\n\n▶️ 5 artikel tersedia dalam file terlampir."
           else
             echo "Artikel.txt tidak ditemukan, lewati pengiriman."
           fi
