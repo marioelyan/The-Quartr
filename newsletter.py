@@ -13,10 +13,6 @@ client = OpenAI(
 # TOOLS
 # ================================
 
-def get_current_date_wib():
-    tz_wib = timezone(timedelta(hours=7))
-    return datetime.now(tz_wib)
-
 def get_date_formatted():
     tz_wib = timezone(timedelta(hours=7))
     return datetime.now(tz_wib).strftime("%A, %d %B %Y")
@@ -27,28 +23,32 @@ def load_top5(filename="top5.json"):
 
 def load_articles_txt(filename="Artikel.txt"):
     """
-    Parsing Artikel.txt untuk mengekstrak judul dan konten setiap artikel.
-    Format yang diharapkan:
+    Parsing Artikel.txt dengan format:
     📰 ARTIKEL #1
+
     Judul: ...
     Subtitle: ...
-    Konten: ...
-    ...
+    Konten:
+    [isi artikel]
+    Kalimat SEO: ...
+    Tags: ...
+    Assets: ...
     """
     try:
         with open(filename, "r", encoding="utf-8") as f:
             content = f.read()
     except:
         return []
-    
+
     articles = []
     # Split berdasarkan ARTIKEL #N
-    blocks = re.split(r'📰 ARTIKEL #\d+\n\n', content)
-    for block in blocks[1:]:  # skip bagian header
+    blocks = re.split(r'📰 ARTIKEL #\d+\n+', content)
+    for block in blocks[1:]:  # skip header
         lines = block.strip().split('\n')
         article = {}
         current_key = None
         current_value = []
+
         for line in lines:
             if line.startswith('Judul: '):
                 if current_key:
@@ -66,37 +66,44 @@ def load_articles_txt(filename="Artikel.txt"):
                 current_key = 'content'
                 current_value = []
             elif line.startswith('Kalimat SEO:') or line.startswith('Tags:') or line.startswith('Assets'):
-                continue
+                # Simpan current content sebelum berakhir
+                if current_key == 'content':
+                    article[current_key] = '\n'.join(current_value).strip()
+                current_key = None
+                current_value = []
             else:
                 if current_key:
                     current_value.append(line)
-        if current_key:
+
+        # Simpan sisa
+        if current_key and current_key == 'content':
             article[current_key] = '\n'.join(current_value).strip()
+
         if article:
             articles.append(article)
+
     return articles
 
 def generate_hook(articles):
-    """Menghasilkan hook: komentar santai atau fakta unik hari ini."""
-    prompt = f"""Anda adalah penulis newsletter "The Quartr". 
-Buatlah pembuka (hook) yang santai, engaging, dan relevan untuk newsletter hari ini.
+    prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
+Buatlah paragraf pembuka (hook) yang menarik untuk newsletter hari ini.
 
-📌 Aturan:
-- Hook harus berupa 1 paragraf pendek (50-80 kata) yang menarik perhatian.
-- Bisa berupa fakta unik, pertanyaan retoris, atau komentar ringan tentang berita hari ini.
-- Gunakan bahasa Indonesia santai, seperti berbicara dengan teman pintar.
-- Jangan gunakan emoji berlebihan (maks 1-2).
+📌 Gaya penulisan:
+- Santai namun profesional, seperti teman yang cerdas.
+- Jangan gunakan kata slang seperti "lo", "gue", "anjay", "bayangin lo", dll.
+- Jangan berlebihan atau hiperbola.
+- 1 paragraf (50-80 kata), mengalir, dan relevan dengan berita hari ini.
 
 Berita hari ini:
 """
     for art in articles[:5]:
-        prompt += f"\n- {art.get('title', '')} | {art.get('subtitle', '')}"
-    prompt += "\n\nOutput: Hanya teks hook, tanpa judul atau embel-embel."
+        prompt += f"\n- {art.get('title', '')}"
+    prompt += "\n\nOutput: Hanya teks hook, tanpa embel-embel."
 
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda penulis newsletter yang santai dan engaging."},
+            {"role": "system", "content": "Anda penulis newsletter dengan gaya santai-profesional."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.7
@@ -104,29 +111,26 @@ Berita hari ini:
     return response.choices[0].message.content.strip()
 
 def generate_quarter_time(articles):
-    """Menghasilkan konten untuk segmen Quarter Time (rekomendasi)."""
-    prompt = f"""Anda adalah penulis newsletter "The Quartr". 
-Buatlah konten untuk segmen "Quarter Time" — bagian ringan di tengah newsletter yang memberikan nilai tambah.
+    prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
+Buatlah konten untuk segmen "Quarter Time" — bagian ringan yang memberikan nilai tambah.
 
-📌 Tujuan Quarter Time:
-- Memberikan perspektif atau insight unik yang tidak ada di berita utama.
-- Bisa berupa: rekomendasi buku/podcast, kutipan inspiratif, analisis tren, atau fakta menarik.
-
-📌 Aturan:
-- 1-2 paragraf (80-120 kata).
-- Relevan dengan tema berita hari ini (bisnis, teknologi, startup).
-- Gaya santai, seperti obrolan ringan.
+📌 Gaya penulisan:
+- Santai namun profesional, seperti teman yang cerdas.
+- Jangan gunakan kata slang seperti "lo", "gue", "anjay", dll.
+- Jangan berlebihan atau hiperbola.
+- 1-2 paragraf (80-120 kata), isinya bisa: rekomendasi buku/podcast, kutipan inspiratif, analisis tren, atau fakta menarik.
+- Relevan dengan tema berita hari ini.
 
 Berita hari ini:
 """
     for art in articles[:5]:
         prompt += f"\n- {art.get('title', '')}"
-    prompt += "\n\nOutput: Hanya teks Quarter Time, tanpa judul atau embel-embel."
+    prompt += "\n\nOutput: Hanya teks Quarter Time, tanpa embel-embel."
 
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda penulis newsletter yang insightful dan santai."},
+            {"role": "system", "content": "Anda penulis newsletter dengan gaya santai-profesional."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.7
@@ -134,13 +138,12 @@ Berita hari ini:
     return response.choices[0].message.content.strip()
 
 def generate_quiz(articles):
-    """Menghasilkan kuis mini untuk segmen gamification."""
-    prompt = f"""Anda adalah penulis newsletter "The Quartr". 
-Buatlah kuis mini (1 pertanyaan pilihan ganda) berdasarkan berita hari ini untuk segmen "Gamification".
+    prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
+Buatlah kuis mini (1 pertanyaan pilihan ganda) berdasarkan berita hari ini.
 
 📌 Aturan:
-- 1 pertanyaan pilihan ganda dengan 4 opsi (A, B, C, D).
-- Pertanyaan harus terkait dengan salah satu berita hari ini.
+- 1 pertanyaan dengan 4 opsi (A, B, C, D).
+- Pertanyaan harus menarik, tidak terlalu mudah.
 - Sertakan jawaban yang benar.
 
 Format output JSON:
@@ -153,7 +156,7 @@ Format output JSON:
 Berita hari ini:
 """
     for art in articles[:5]:
-        prompt += f"\n- {art.get('title', '')} | {art.get('subtitle', '')}"
+        prompt += f"\n- {art.get('title', '')}"
     prompt += "\n\nOutput: JSON valid, tanpa komentar tambahan."
 
     response = client.chat.completions.create(
@@ -166,23 +169,22 @@ Berita hari ini:
         response_format={"type": "json_object"}
     )
     try:
-        data = json.loads(response.choices[0].message.content)
-        return data
+        return json.loads(response.choices[0].message.content)
     except:
         return {
-            "question": "Apa berita utama hari ini?",
-            "options": ["A. SpaceX IPO", "B. AI coding", "C. Regulasi baru", "D. Semua benar"],
-            "answer": "D"
+            "question": "Apa berita utama yang paling menarik perhatian Anda hari ini?",
+            "options": ["A. Amazon chip AI", "B. SpaceX akuisisi", "C. Apple Brasil", "D. Startup AI"],
+            "answer": "A"
         }
 
 def generate_subject(articles):
-    """Menghasilkan subjek email yang menarik (10-15 kata)."""
-    prompt = f"""Anda adalah penulis newsletter "The Quartr". 
-Buatlah subjek email (1 kalimat, 10-15 kata) yang menarik dan merangkum isi newsletter hari ini.
+    prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
+Buatlah subjek email (1 kalimat, 10-15 kata) yang menarik dan profesional.
 
-📌 Aturan:
+📌 Gaya:
 - Menarik, membuat penasaran, tapi tidak clickbait.
 - Mencerminkan tema utama hari ini.
+- Gunakan bahasa Indonesia yang baik, tanpa slang.
 
 Berita hari ini:
 """
@@ -193,7 +195,7 @@ Berita hari ini:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda ahli menulis subjek email yang menarik."},
+            {"role": "system", "content": "Anda ahli menulis subjek email yang profesional."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.7
@@ -201,42 +203,39 @@ Berita hari ini:
     return response.choices[0].message.content.strip()
 
 def format_newsletter(articles, hook, quarter_time, quiz_data, subject, date):
-    """Menyusun newsletter lengkap sesuai format."""
-    # Judul
     text = f"📰 **{subject}**\n\n"
     text += f"*The Quartr — {date}*\n\n"
-    text += "─" * 50 + "\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
 
-    # 1. The Hook
+    # Hook
     text += "## 🎯 The Hook\n"
     text += f"{hook}\n\n"
-    text += "─" * 50 + "\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
 
-    # 2. The Core Stories (5 berita)
+    # Core Stories
     text += "## 📌 The Core Stories\n\n"
     for idx, art in enumerate(articles[:5], 1):
         title = art.get('title', f'Berita {idx}')
         content = art.get('content', '')
-        # Pastikan konten tidak kosong
         if not content:
             content = "Konten tidak tersedia."
         text += f"### {idx}. {title}\n"
         text += f"{content}\n\n"
-    text += "─" * 50 + "\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
 
-    # 3. Quarter Time
+    # Quarter Time
     text += "## 🧠 Quarter Time\n"
     text += f"{quarter_time}\n\n"
-    text += "─" * 50 + "\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
 
-    # 4. Gamification / Interactive
+    # Gamification
     text += "## 🎮 Gamification\n"
     text += f"**Kuis Mini:**\n"
     text += f"{quiz_data.get('question', '')}\n"
     for opt in quiz_data.get('options', []):
         text += f"- {opt}\n"
     text += f"\n*Jawaban: {quiz_data.get('answer', '')}*\n\n"
-    text += "─" * 50 + "\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
 
     # Footer
     text += "📬 **Ikuti The Quartr setiap hari**\n"
@@ -245,10 +244,6 @@ def format_newsletter(articles, hook, quarter_time, quiz_data, subject, date):
     text += "💬 Ada masukan? Balas email ini — saya selalu senang ngobrol.\n"
 
     return text
-
-# ================================
-# MAIN
-# ================================
 
 if __name__ == "__main__":
     print("📖 Membaca top5.json...")
@@ -287,14 +282,9 @@ if __name__ == "__main__":
     print("📝 Menyusun newsletter...")
     newsletter = format_newsletter(articles, hook, quarter_time, quiz_data, subject, date)
 
-    # Simpan sebagai file .txt
     with open("newsletter_substack.txt", "w", encoding="utf-8") as f:
         f.write(newsletter)
 
     print("✅ Newsletter siap di-copy ke Substack!")
     print("📄 File: newsletter_substack.txt")
     print(f"📧 Subjek: {subject}")
-
-    # Opsional: tampilkan preview
-    print("\n--- PREVIEW ---")
-    print(newsletter[:500] + "...\n")
