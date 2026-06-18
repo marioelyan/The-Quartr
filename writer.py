@@ -37,29 +37,18 @@ def save_article(content, filename="Artikel.txt"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
 
-def send_article_to_telegram(title, subtitle, full_content, seo, tags, assets):
-    """Kirim satu artikel sebagai satu paragraf mengalir."""
-    import subprocess
-
-    # Gabungkan semua menjadi satu pesan dengan subtitle dan konten
-    message = f"*📰 {title}*\n"
-    message += f"_{subtitle}_\n\n"
-    message += full_content
-    message += f"\n\n🔍 *SEO:* {seo}\n"
-    message += f"🏷️ *Tags:* {tags}\n"
-    if assets:
-        message += f"🖼️ *Assets:* {assets[0]}"
-
-    if len(message) > 4096:
-        message = message[:4093] + "..."
-
-    subprocess.run([
-        "curl", "-s", "-X", "POST",
-        f"https://api.telegram.org/bot{os.environ['TELEGRAM_BOT_TOKEN']}/sendMessage",
-        "-F", f"chat_id={os.environ['TELEGRAM_CHAT_ID']}",
-        "-F", f"text={message}",
-        "-F", "parse_mode=Markdown"
-    ])
+def format_article_text(data, index):
+    text = f"📰 ARTIKEL #{index}\n\n"
+    text += f"Judul: {data['title']}\n"
+    text += f"Subtitle: {data['subtitle']}\n\n"
+    text += f"{data['content']}\n\n"
+    text += f"Kalimat SEO: {data['seo']}\n"
+    text += f"Tags: {data['tags']}\n"
+    text += f"Assets (Gambar):\n"
+    for asset in data.get('assets', []):
+        text += f"- {asset}\n"
+    text += "\n" + "="*60 + "\n\n"
+    return text
 
 # ================================
 # WRITER CORE
@@ -73,14 +62,22 @@ Gaya penulisan:
 - Santai tapi profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli.
 - Gunakan bahasa yang mudah dipahami.
 - Hindari jargon berlebihan. Gunakan kata "kamu" untuk menyebut pembaca.
-- Hindari kalimat "Kenapa ini penting?" atau kalimat sejenis pada paragraf why it matters. Buat paragraf mengalir.
+- **JANGAN** gunakan kalimat transisi seperti:
+  - "Kenapa ini penting?"
+  - "Kenapa ini penting buat kamu?"
+  - "Dalam gambaran yang lebih luas"
+  - "Dari perspektif yang lebih luas"
+  - "Kalau kita lihat gambaran besarnya"
+  - "Yang menariknya..."
+  - "Dampaknya tidak hanya ... tapi juga ..."
+  - "Dalam skala yang lebih besar..."
+  - Dan sejenisnya.
+- Biarkan paragraf mengalir secara alami, tanpa frasa template. Setiap paragraf harus terhubung dengan ide, bukan dengan kalimat penghubung yang sama.
 
-Struktur narasi (tetapi **tanpa subjudul** – tulis sebagai paragraf yang mengalir, paragraf dipisah menjadi 3-4 bagian):
-1. **Pembuka**: Jelaskan inti berita secara ringkas dan jelas (TL;DR).
-2. **Tengah**: Uraikan mengapa pembaca harus peduli, apa dampaknya secara konkret (Why it matters).
-3. **Penutup**: Tarik ke perspektif yang lebih luas atau arah tren selanjutnya (Big picture).
-
-Pastikan ketiga bagian ini tersambung dengan mulus, namun tetap beri jarak spasi antar paragraf.
+Struktur narasi (tanpa subjudul, tulis sebagai paragraf mengalir, dipisah menjadi 3-4 paragraf):
+1. **Pembuka**: Jelaskan inti berita secara ringkas dan jelas.
+2. **Tengah**: Uraikan mengapa pembaca harus peduli, apa dampaknya secara konkret. Sampaikan tanpa menggunakan kalimat "Kenapa ini penting?"
+3. **Penutup**: Tarik ke perspektif yang lebih luas atau arah tren selanjutnya, tanpa menggunakan frasa "Dalam gambaran yang lebih luas".
 
 📌 FORMAT OUTPUT (WAJIB):
 - **Judul Alternatif**: Judul baru menarik, tanpa emoticon.
@@ -109,7 +106,7 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda adalah penulis berita untuk audiens Indonesia dengan gaya santai namun cerdas. Output selalu JSON valid."},
+            {"role": "system", "content": "Anda adalah penulis berita untuk audiens Indonesia dengan gaya santai namun cerdas. Output selalu JSON valid. Hindari kalimat transisi template."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.7,
@@ -121,7 +118,6 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
         if not data.get('assets'):
             keyword = data.get('tags', '').split(',')[0].strip() if data.get('tags') else article['title'][:30]
             data['assets'] = [fetch_asset_image(keyword)]
-        # Pastikan semua field ada
         for key in ['title', 'subtitle', 'content', 'seo', 'tags', 'assets']:
             if key not in data:
                 data[key] = ""
@@ -136,20 +132,6 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
             "tags": "berita, teknologi, bisnis",
             "assets": [fetch_asset_image("technology")]
         }
-
-def format_article_text(data, index):
-    """Format untuk file .txt (arsip) – paragraf mengalir."""
-    text = f"📰 ARTIKEL #{index}\n\n"
-    text += f"Judul: {data['title']}\n"
-    text += f"Subtitle: {data['subtitle']}\n\n"
-    text += f"{data['content']}\n\n"
-    text += f"Kalimat SEO: {data['seo']}\n"
-    text += f"Tags: {data['tags']}\n"
-    text += f"Assets (Gambar):\n"
-    for asset in data.get('assets', []):
-        text += f"- {asset}\n"
-    text += "\n" + "="*60 + "\n\n"
-    return text
 
 if __name__ == "__main__":
     print("📖 Membaca top5.json...")
@@ -166,19 +148,6 @@ if __name__ == "__main__":
     for idx, article in enumerate(top5_sorted, 1):
         print(f"✍️ Menulis artikel #{idx}: {article['title']}")
         data = write_full_article(article, idx)
-
-        # Kirim ke Telegram sebagai satu paragraf utuh
-       # send_article_to_telegram(
-          #  title=data['title'],
-          #  subtitle=data['subtitle'],
-          #  full_content=data['content'],
-          #  seo=data['seo'],
-          #  tags=data['tags'],
-          #  assets=data.get('assets', [])
-       # )
-      #  print(f"  ✅ Terkirim ke Telegram") 
-
-        # Simpan ke arsip
         full_archive += format_article_text(data, idx)
 
     save_article(full_archive, "Artikel.txt")
