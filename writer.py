@@ -164,11 +164,11 @@ if __name__ == "__main__":
         data = write_full_article(article, idx)
 
         # Kirim ke Telegram sebagai satu paragraf utuh
-        send_article_to_telegram(
+       # send_article_to_telegram(
           #  title=data['title'],
           #  subtitle=data['subtitle'],
-          #   full_content=data['content'],
-          #   seo=data['seo'],
+          #  full_content=data['content'],
+          #  seo=data['seo'],
           #  tags=data['tags'],
           #  assets=data.get('assets', [])
         )
