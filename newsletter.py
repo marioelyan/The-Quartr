@@ -73,41 +73,32 @@ def load_articles_txt(filename="Artikel.txt"):
 
 def generate_hook_and_bullets(articles):
     """
-    Menghasilkan hook (paragraf pembuka) + bullet list ringkasan 5 berita.
-    Output: (hook_text, bullet_list)
+    Menghasilkan hook yang NATURAL (bukan ringkasan berita) + bullet list preview.
     """
-    # Siapkan data berita untuk prompt
-    news_list = []
-    for art in articles[:5]:
-        news_list.append({
-            'title': art.get('title', ''),
-            'summary': art.get('summary', '')
-        })
+    # Ambil judul untuk konteks
+    titles = [art.get('title', '') for art in articles[:5]]
 
     prompt = f"""Anda adalah penulis untuk newsletter "The Quartr". 
 Buatlah dua bagian untuk pembuka newsletter hari ini:
 
-**Bagian 1: Paragraf Hook**
-- Gaya santai tapi profesional, seperti berbicara dengan teman yang cerdas.
-- Bervariasi: bisa anekdot, fakta unik, pertanyaan retoris, atau gabungan.
-- Jangan gunakan "Tahukah kamu..." atau "Sementara itu..." secara berulang.
-- 1 paragraf (50-80 kata).
+**Bagian 1: Paragraf Hook (Pembuka)**
+- Tujuannya: MENARIK PERHATIAN, bukan merangkum berita.
+- Bisa berupa: anekdot personal, pertanyaan reflektif, observasi ringan, sapaan hangat, atau fakta menarik yang tidak disebutkan di berita.
+- JANGAN menyebutkan judul atau detail berita di hook — itu tugas bullet list di bawah.
+- 1 paragraf (40-60 kata).
+- Gaya: santai, personal, seperti berbicara dengan teman yang pintar.
 
-**Bagian 2: Bullet List Ringkasan 5 Berita**
-- Buat 5 bullet point, masing-masing 1 kalimat singkat (10-15 kata) yang merangkum esensi berita.
+**Bagian 2: Bullet List Preview (5 berita)**
+- 5 bullet point, masing-masing 1 kalimat singkat (10-15 kata).
 - Format: "- Ringkasan singkat"
-- Gunakan bahasa yang langsung ke inti.
+- Langsung ke inti, tanpa basa-basi.
 
-📰 Berita hari ini:
-"""
-    for idx, art in enumerate(articles[:5], 1):
-        prompt += f"\n{idx}. {art.get('title', '')} | {art.get('summary', '')[:150]}"
-
-    prompt += """
+📰 Judul berita hari ini (hanya untuk konteks, JANGAN disebut di hook):
+{chr(10).join(f'- {title}' for title in titles)}
 
 Output: Berikan dalam format JSON **tanpa komentar tambahan**:
 {{
-  "hook": "teks paragraf hook",
+  "hook": "teks paragraf hook (tanpa detail berita)",
   "bullets": [
     "- ringkasan berita 1",
     "- ringkasan berita 2",
@@ -121,10 +112,10 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda penulis newsletter dengan gaya santai-profesional. Variasikan hook setiap hari."},
+            {"role": "system", "content": "Anda penulis newsletter dengan gaya personal dan hangat. Hook harus natural, bukan ringkasan berita."},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.7,
+        temperature=0.8,
         response_format={"type": "json_object"}
     )
 
@@ -132,14 +123,20 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
         data = json.loads(response.choices[0].message.content)
         hook = data.get('hook', '')
         bullets = data.get('bullets', [])
-        # Pastikan bullets ada 5
         while len(bullets) < 5:
             bullets.append(f"- {articles[len(bullets)].get('title', 'Berita')[:50]}...")
         return hook, bullets
     except Exception as e:
         print(f"Gagal parsing hook: {e}")
-        # Fallback
-        hook = "Pagi, Quartrian! Pekan ini dunia teknologi dan bisnis bergerak cepat."
+        # Fallback natural
+        fallback_hooks = [
+            "Pagi, Quartrian! Semoga hari ini membawa ide-ide segar untukmu.",
+            "Selamat pagi! Yuk kita sambut hari dengan wawasan baru.",
+            "Halo, Quartrian! Siap untuk lima berita terbaik hari ini?",
+            "Morning! Semoga kopi dan berita hari ini sama-sama hangat."
+        ]
+        import random
+        hook = random.choice(fallback_hooks)
         bullets = [f"- {art.get('title', 'Berita')[:60]}..." for art in articles[:5]]
         return hook, bullets
 
@@ -148,12 +145,9 @@ def generate_quarter_time(articles):
 Buatlah konten untuk segmen "Quarter Time" — bagian ringan yang memberikan nilai tambah.
 
 📌 Gaya penulisan: 
-- Santai tapi profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli.
-- Gunakan bahasa yang mudah dipahami.
-- Hindari jargon berlebihan. Gunakan kata "kamu" untuk menyebut pembaca.
+- Santai tapi profesional, seperti berbicara dengan teman yang cerdas.
 - 1-2 paragraf (80-120 kata), isinya bisa: rekomendasi buku/youtube, kutipan inspiratif, analisis tren, atau fakta menarik.
-- Relevan dengan tema berita hari ini.
-
+- Relevan dengan apa yang terjadi hari ini.
 Berita hari ini:
 """
     for art in articles[:5]:
@@ -171,7 +165,6 @@ Berita hari ini:
     return response.choices[0].message.content.strip()
 
 def generate_quiz(articles):
-    """Kuis pengetahuan umum, jawaban tidak ditampilkan."""
     topics = []
     for art in articles[:5]:
         title = art.get('title', '')
@@ -185,10 +178,9 @@ def generate_quiz(articles):
 Buatlah 1 pertanyaan pilihan ganda tentang **pengetahuan umum** yang relevan dengan tema berita hari ini.
 
 📌 Aturan:
-- Pertanyaan harus tentang pengetahuan umum (sejarah teknologi, ekonomi, tokoh penting, fakta sains, dll.) yang terkait dengan tema "{topic}".
-- Jangan membuat pertanyaan yang jawabannya ada di dalam berita hari ini.
+- Pertanyaan tentang pengetahuan umum (sejarah teknologi, ekonomi, tokoh penting, fakta sains, dll.)
+- Jangan buat pertanyaan yang jawabannya ada di berita hari ini.
 - 4 opsi (A, B, C, D), satu jawaban benar.
-- Pertanyaan harus menarik dan tidak terlalu mudah.
 
 Format output JSON:
 {{
@@ -227,10 +219,8 @@ Buatlah subjek email (1 kalimat, 10-15 kata) yang menarik dan profesional.
 
 📌 Gaya:
 - Menarik, membuat penasaran, tapi tidak clickbait.
-- Mencerminkan tema utama hari ini.
-- Gaya penulisan santai tapi profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli.
-- Gunakan bahasa yang mudah dipahami.
-- Hindari jargon berlebihan. Gunakan kata "kamu" untuk menyebut pembaca.
+- Mencerminkan dunia hari ini.
+- Santai tapi profesional.
 
 Berita hari ini:
 """
@@ -253,15 +243,15 @@ def format_newsletter(articles, hook, bullets, quarter_time, quiz_data, subject,
     text += f"*The Quartr — {date}*\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
-    # Hook + Bullet list
+    # Hook (tanpa detail berita)
     text += "## 🎯 The Hook\n"
     text += f"{hook}\n\n"
-    text += "📌 **In today's newsletter:**\n"
+    text += "📌 Apa yang terjadi hari ini:\n"
     for bullet in bullets:
         text += f"{bullet}\n"
     text += "\n──────────────────────────────────────────────────\n\n"
 
-    # Core Stories (tanpa bullet di sini, karena sudah di hook)
+    # Core Stories
     text += "## 📌 The Core Stories\n\n"
     for idx, art in enumerate(articles[:5], 1):
         title = art.get('title', f'Berita {idx}')
@@ -277,13 +267,13 @@ def format_newsletter(articles, hook, bullets, quarter_time, quiz_data, subject,
     text += f"{quarter_time}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
-    # Gamification (tanpa jawaban)
+    # Gamification
     text += "## 🎮 Gamification\n"
     text += f"**Kuis Mini:**\n"
     text += f"{quiz_data.get('question', '')}\n"
     for opt in quiz_data.get('options', []):
         text += f"- {opt}\n"
-    text += "\n*Jawaban akan diumumkan di edisi besok!* 😉\n\n"
+    text += "\n*Jawaban akan diumumkan di Instagram Story!* 😉\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
     # Footer
@@ -314,7 +304,7 @@ if __name__ == "__main__":
             print("❌ Gagal memuat data. Keluar.")
             exit(1)
 
-    print("🤖 Menghasilkan hook + bullet ringkasan...")
+    print("🤖 Menghasilkan hook natural + bullet preview...")
     hook, bullets = generate_hook_and_bullets(articles)
 
     print("🧠 Menghasilkan Quarter Time...")
