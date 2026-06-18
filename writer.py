@@ -171,7 +171,7 @@ if __name__ == "__main__":
           #  seo=data['seo'],
           #  tags=data['tags'],
           #  assets=data.get('assets', [])
-        )
+       # )
       #  print(f"  ✅ Terkirim ke Telegram") 
 
         # Simpan ke arsip
