@@ -165,14 +165,14 @@ if __name__ == "__main__":
 
         # Kirim ke Telegram sebagai satu paragraf utuh
         send_article_to_telegram(
-            title=data['title'],
-            subtitle=data['subtitle'],
-            full_content=data['content'],
-            seo=data['seo'],
-            tags=data['tags'],
-            assets=data.get('assets', [])
+          #  title=data['title'],
+          #  subtitle=data['subtitle'],
+          #   full_content=data['content'],
+          #   seo=data['seo'],
+          #  tags=data['tags'],
+          #  assets=data.get('assets', [])
         )
-        print(f"  ✅ Terkirim ke Telegram")
+        print(f"  ✅ Terkirim ke Telegram") #
 
         # Simpan ke arsip
         full_archive += format_article_text(data, idx)
