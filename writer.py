@@ -38,6 +38,7 @@ def save_article(content, filename="Artikel.txt"):
         f.write(content)
 
 def format_article_text(data, index):
+    """Format untuk file .txt (draft mentah)."""
     text = f"📰 ARTIKEL #{index}\n\n"
     text += f"Judul: {data['title']}\n"
     text += f"Subtitle: {data['subtitle']}\n\n"
@@ -51,65 +52,56 @@ def format_article_text(data, index):
     return text
 
 # ================================
-# WRITER CORE
+# WRITER CORE (DRAFT MENTAH)
 # ================================
 
-def write_full_article(article, index):
-    prompt = f"""Kamu adalah mantan penulis newsletter Morning Brew, berpengalaman lebih dari 10 tahun dalam penulisan berita. 
-Tulislah sebuah artikel berita (total 250–300 kata) berdasarkan berita di bawah ini menggunakan bahasa Indonesia. 
+def write_draft_article(article, index):
+    """
+    Menghasilkan draft mentah dengan struktur Morning Brew:
+    1. TL;DR (Apa yang terjadi)
+    2. Dampak (Mengapa ini penting)
+    3. Gambaran Besar (Arah tren)
+    Gaya: datar, faktual, tanpa opini, tanpa sapaan personal.
+    """
+    prompt = f"""Anda adalah mesin penulis draft berita dengan gaya **"Datar dan Faktual"**. 
+Tulislah draft artikel berdasarkan berita di bawah ini.
 
-Gaya penulisan: 
-- Santai tapi profesional, seperti berbicara dengan teman yang cerdas tapi bukan ahli.
-- Gunakan bahasa yang mudah dipahami.
-- Hindari jargon berlebihan. Gunakan kata "kamu" untuk menyebut pembaca.
-- **JANGAN** gunakan kalimat transisi seperti:
-  - "Kenapa ini penting?"
-  - "Kenapa ini penting buat kamu?"
-  - "Dalam gambaran yang lebih luas"
-  - "Dari perspektif yang lebih luas"
-  - "Kalau kita lihat gambaran besarnya"
-  - "Yang menariknya..."
-  - "Dampaknya tidak hanya ... tapi juga ..."
-  - "Dalam skala yang lebih besar..."
-  - Dan sejenisnya.
-- Biarkan paragraf mengalir secara alami, tanpa frasa template. Setiap paragraf harus terhubung dengan ide, bukan dengan kalimat penghubung yang sama.
+📌 **STRUKTUR WAJIB (Morning Brew Style):**
+Tulis dalam 3 paragraf yang mengalir, dengan pembagian berikut:
+- **Paragraf 1 (TL;DR)**: Apa yang terjadi? Siapa pelakunya? Berapa nilainya? (Fakta mentah).
+- **Paragraf 2 (Dampak)**: Mengapa ini penting secara ekonomi/bisnis? Siapa yang terdampak? (Analisis objektif).
+- **Paragraf 3 (Gambaran Besar)**: Apa implikasi jangka panjang? Bagaimana tren ke depannya? (Spekulasi berbasis fakta).
 
-Struktur narasi (tanpa subjudul, tulis sebagai paragraf mengalir, dipisah menjadi 3-4 paragraf):
-1. **Pembuka**: Jelaskan inti berita secara ringkas dan jelas.
-2. **Tengah**: Uraikan mengapa pembaca harus peduli, apa dampaknya secara konkret. Sampaikan tanpa menggunakan kalimat "Kenapa ini penting?"
-3. **Penutup**: Tarik ke perspektif yang lebih luas atau arah tren selanjutnya, tanpa menggunakan frasa "Dalam gambaran yang lebih luas".
+📌 **ATURAN KETAT:**
+1. **HARAM** menggunakan kata "kamu", "Anda", atau sapaan personal lainnya.
+2. **HARAM** menambahkan opini, sindiran, atau kata-kata "menarik", "fantastis", "luar biasa".
+3. **HARAM** menggunakan frasa template seperti "Di sisi lain", "Ke depannya", "Tidak hanya... tapi juga".
+4. Tulis seperti laporan keuangan: **Kering, Padat, dan Objektif**.
+5. Panjang total: 250-300 kata.
 
-📌 FORMAT OUTPUT (WAJIB):
-- **Judul Alternatif**: Judul baru menarik, tanpa emoticon.
-- **Subtitle**: 1 kalimat, max 15 kata, merangkum esensi.
-- **Konten**: Paragraf utuh 250–300 kata yang mencakup semua bagian di atas.
-- **Kalimat SEO**: 1 kalimat dengan keyword utama.
-- **Tag**: 5–7 kata kunci, dipisahkan koma.
-- **Assets**: 1–2 link gambar gratis (Unsplash/Pexels).
+📌 **FORMAT OUTPUT (WAJIB JSON):**
+{{
+  "title": "judul alternatif (tanpa emoticon, max 10 kata)",
+  "subtitle": "subtitle singkat (max 15 kata)",
+  "content": "teks artikel utuh (250-300 kata) dengan struktur 3 paragraf Morning Brew",
+  "seo": "kalimat SEO (1 kalimat, mengandung keyword utama)",
+  "tags": "tag1, tag2, tag3, tag4, tag5 (5-7 kata kunci)",
+  "assets": ["url_gambar1", "url_gambar2"]
+}}
 
 📰 DATA BERITA:
 Judul: {article['title']}
 Ringkasan: {article.get('summary', '')}
 Skor: {article.get('score', 3)}
 Alasan: {article.get('reason', '')}
-
-Output: Berikan dalam format JSON **tanpa komentar tambahan**:
-{{
-  "title": "judul alternatif",
-  "subtitle": "subtitle singkat",
-  "content": "teks artikel utuh (paragraf mengalir, 250-300 kata)",
-  "seo": "kalimat SEO",
-  "tags": "tag1, tag2, tag3",
-  "assets": ["url_gambar1", "url_gambar2"]
-}}
 """
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "Anda adalah penulis berita untuk audiens Indonesia dengan gaya santai namun cerdas. Output selalu JSON valid. Hindari kalimat transisi template."},
+            {"role": "system", "content": "Anda adalah penulis draft berita yang objektif dan datar. Output selalu JSON valid."},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.7,
+        temperature=0.3,  # rendah agar konsisten dan datar
         response_format={"type": "json_object"}
     )
 
@@ -118,6 +110,7 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**:
         if not data.get('assets'):
             keyword = data.get('tags', '').split(',')[0].strip() if data.get('tags') else article['title'][:30]
             data['assets'] = [fetch_asset_image(keyword)]
+        # Pastikan semua field ada
         for key in ['title', 'subtitle', 'content', 'seo', 'tags', 'assets']:
             if key not in data:
                 data[key] = ""
@@ -146,9 +139,9 @@ if __name__ == "__main__":
     full_archive += "="*50 + "\n\n"
 
     for idx, article in enumerate(top5_sorted, 1):
-        print(f"✍️ Menulis artikel #{idx}: {article['title']}")
-        data = write_full_article(article, idx)
+        print(f"✍️ Menulis draft mentah artikel #{idx}: {article['title']}")
+        data = write_draft_article(article, idx)
         full_archive += format_article_text(data, idx)
 
     save_article(full_archive, "Artikel.txt")
-    print("✅ Artikel.txt berhasil dibuat.")
+    print("✅ Artikel.txt (draft mentah) berhasil dibuat.")
