@@ -24,7 +24,34 @@ print("✅ Koneksi ke Supabase berhasil.")
 
 
 # ========================================
-# 2. PARSE FILE final_edition.txt
+# 2. EKSTRAK TANGGAL DARI FILE
+# ========================================
+
+def extract_published_date(content):
+    """
+    Mencari pola: *The Quartr — Saturday, 20 June 2026*
+    Mengembalikan string YYYY-MM-DD, atau None jika gagal.
+    """
+    # Cari baris yang mengandung "The Quartr — "
+    match = re.search(r'\*The Quartr — (.*?)\*', content)
+    if not match:
+        return None
+
+    date_string = match.group(1).strip()  # "Saturday, 20 June 2026"
+    
+    # Terjemahkan nama hari/bulan ke bahasa Inggris (sudah format standar)
+    # Karena template menggunakan bahasa Inggris: "Saturday, 20 June 2026"
+    try:
+        # Format: "Saturday, 20 June 2026"
+        parsed_date = datetime.strptime(date_string, "%A, %d %B %Y")
+        return parsed_date.strftime("%Y-%m-%d")
+    except ValueError as e:
+        print(f"⚠️ Gagal parsing tanggal: '{date_string}'. Error: {e}")
+        return None
+
+
+# ========================================
+# 3. PARSE FILE final_edition.txt
 # ========================================
 
 def parse_final_edition(filename="final_edition.txt"):
@@ -63,30 +90,40 @@ def parse_final_edition(filename="final_edition.txt"):
     quiz_match = re.search(r'## 🎮 Gamification\n(.*?)\n\n📬', content, re.DOTALL)
     quiz = quiz_match.group(1).strip() if quiz_match else ""
 
+    # === Ekstrak Tanggal ===
+    published_date = extract_published_date(content)
+
     return {
         "title": title,
         "content": content,
         "hook": hook,
         "quarter_time": quarter_time,
-        "quiz": quiz
+        "quiz": quiz,
+        "published_date": published_date  # Bisa None jika gagal
     }
 
 
 # ========================================
-# 3. UPLOAD KE SUPABASE
+# 4. UPLOAD KE SUPABASE
 # ========================================
 
-def upload_final_edition(data):
-    today = datetime.now().strftime("%Y-%m-%d")
+def upload_final_edition(data, published_date):
+    """
+    Upload edisi final ke Supabase.
+    Jika published_date None, gunakan hari ini sebagai fallback.
+    """
+    if not published_date:
+        published_date = datetime.now().strftime("%Y-%m-%d")
+        print(f"⚠️ Tanggal tidak ditemukan di file. Gunakan hari ini: {published_date}")
 
-    # Cek apakah sudah ada edisi untuk hari ini
+    # Cek apakah sudah ada edisi untuk tanggal ini
     existing = supabase.table("final_editions") \
         .select("id") \
-        .eq("published_date", today) \
+        .eq("published_date", published_date) \
         .execute()
 
     row = {
-        "published_date": today,
+        "published_date": published_date,
         "title": data["title"],
         "content": data["content"],
         "hook": data["hook"],
@@ -100,15 +137,15 @@ def upload_final_edition(data):
             # Update jika sudah ada
             supabase.table("final_editions") \
                 .update(row) \
-                .eq("published_date", today) \
+                .eq("published_date", published_date) \
                 .execute()
-            print(f"✅ Edisi {today} berhasil diUPDATE di Supabase.")
+            print(f"✅ Edisi {published_date} berhasil diUPDATE di Supabase.")
         else:
             # Insert baru
             supabase.table("final_editions") \
                 .insert(row) \
                 .execute()
-            print(f"✅ Edisi {today} berhasil diINSERT ke Supabase.")
+            print(f"✅ Edisi {published_date} berhasil diINSERT ke Supabase.")
         return True
     except Exception as e:
         print(f"❌ Gagal upload: {e}")
@@ -116,7 +153,7 @@ def upload_final_edition(data):
 
 
 # ========================================
-# 4. MAIN
+# 5. MAIN
 # ========================================
 
 if __name__ == "__main__":
@@ -132,10 +169,15 @@ if __name__ == "__main__":
     else:
         print(f"📌 Judul: {data['title'][:60]}...")
 
+    if data["published_date"]:
+        print(f"📅 Tanggal dari file: {data['published_date']}")
+    else:
+        print("⚠️ Tanggal tidak ditemukan di file. Akan menggunakan tanggal hari ini.")
+
     print(f"📝 Panjang konten: {len(data['content'])} karakter")
     print("📤 Mengupload ke Supabase...")
 
-    success = upload_final_edition(data)
+    success = upload_final_edition(data, data["published_date"])
 
     if success:
         print("✅ Selesai.")
