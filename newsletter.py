@@ -62,8 +62,12 @@ def load_articles_txt(filename="Artikel.txt"):
 
 def build_newsletter_template(articles, date):
     """
-    Membangun template newsletter Substack yang BERSIH (tanpa instruksi),
-    hanya placeholder {{...}} dan struktur siap pakai.
+    Membangun template newsletter Substack dengan segmen:
+    - The Hook
+    - The Core Stories
+    - Pojok 90 derajat
+    - Bonding
+    - Terskip
     """
     text = ""
 
@@ -92,13 +96,13 @@ def build_newsletter_template(articles, date):
         text += f"{content}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
-    # ===== QUARTER TIME =====
-    text += "## 🧠 Quarter Time\n"
-    text += "{{TULIS REKOMENDASI BUKU/PODCAST ATAU WAWASAN DI SINI (80-120 KATA)}}\n\n"
+    # ===== POJOK 90 DERAJAT =====
+    text += "## 🧠 Pojok 90 derajat\n"
+    text += "{{TULIS ANALISIS, REKOMENDASI, ATAU 'WHAT IF' DI SINI (80-120 KATA)}}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
-    # ===== GAMIFICATION =====
-    text += "## 🎮 Gamification\n"
+    # ===== BONDING =====
+    text += "## 🎮 Bonding\n"
     text += "**Kuis Mini:**\n"
     text += "{{TULIS PERTANYAAN PILIHAN GANDA DI SINI}}\n"
     text += "- A. {{OPSI A}}\n"
@@ -106,6 +110,11 @@ def build_newsletter_template(articles, date):
     text += "- C. {{OPSI C}}\n"
     text += "- D. {{OPSI D}}\n"
     text += "\n*Jawaban akan diumumkan di edisi besok!* 😉\n\n"
+    text += "──────────────────────────────────────────────────\n\n"
+
+    # ===== TERSKIP =====
+    text += "## 📌 Terskip\n"
+    text += "{{TULIS 2-3 BERITA RINGAN/ANEH DI SINI (MANUAL)}}\n\n"
     text += "──────────────────────────────────────────────────\n\n"
 
     # ===== FOOTER =====
