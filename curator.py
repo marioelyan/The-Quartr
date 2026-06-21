@@ -109,16 +109,21 @@ def curate_top5(all_articles):
 Tugas: pilih 5 berita PALING PENTING dan RELEVAN UNTUK HARI INI dari daftar di bawah.
 
 📌 KRITERIA PENILAIAN (dengan bobot):
-1. **Kebaruan (25%)** : Berita yang dipublikasikan dalam 24 jam terakhir (days_ago <= 1) mendapat nilai tinggi. Semakin lama, semakin rendah.
-2. **Dampak (25%)** : Nilai transaksi (pendanaan, IPO, akuisisi), jumlah orang terdampak, perubahan pasar/regulasi.
-3. **Relevansi Audiens (20%)** : Seberapa relevan untuk eksekutif, investor, dan pelaku startup di Asia Tenggara. Berita tentang Indonesia/ASEAN mendapat nilai tambah.
+1. **Kebaruan (20%)** : Berita yang dipublikasikan dalam 24 jam terakhir (days_ago <= 1) mendapat nilai tinggi. Semakin lama, semakin rendah.
+2. **Dampak Ekonomi & Transaksi (15%)** : Nilai transaksi finansial (pendanaan, IPO, akuisisi) tetap diperhatikan, tapi **jangan jadi satu-satunya patokan**. Beri nilai tinggi jika transaksi bernilai besar atau mengubah lanskap industri.
+3. **Relevansi Audiens (20%)** : Seberapa relevan untuk eksekutif, investor, pelaku startup, dan pebisnis kecil di Asia Tenggara. Berita tentang Indonesia/ASEAN mendapat nilai tambah.
 4. **Potensi Tren (15%)** : Apakah berita ini memicu tren jangka panjang atau hanya kejadian sesaat?
 5. **Variasi Sektor (15%)** : Pastikan 5 berita mewakili sektor berbeda (maksimal 2 dari sektor yang sama).
+6. **Konflik, Kontroversi & Kejutan (15%)** : **[KRITERIA BARU]** Beri nilai tinggi jika berita mengandung:
+   - Konflik/pertentangan (boikot, larangan, perang, persaingan sengit).
+   - Kontroversi (tokoh kontroversial, keputusan kontroversial).
+   - Kejutan (hal tidak terduga, "pertama kalinya", atau fenomena aneh).
+   - Drama (pergantian kekuasaan, jatuhnya saham karena sentimen, dll).
 
 🚫 ATURAN TAMBAHAN:
 - Hindari memilih berita yang sudah lebih dari 2 hari (days_ago > 2) kecuali sangat penting.
 - Maksimal 1 berita dari sumber yang sama (jangan 2 dari TechCrunch, 2 dari Forbes, dll.)
-- Prioritaskan berita yang memiliki data angka (pendanaan, IPO, dll.)
+- **Utamakan berita yang memiliki dampak nyata, baik berupa uang, perubahan kebijakan, konflik, atau dampak sosial bagi masyarakat luas.**
 
 Output: Berikan dalam format JSON **tanpa komentar tambahan**, berupa array of objects dengan field:
 {{
@@ -128,7 +133,7 @@ Output: Berikan dalam format JSON **tanpa komentar tambahan**, berupa array of o
   "link": (url),
   "published": (tanggal),
   "score": (integer 1-5, berdasarkan bobot di atas),
-  "reason": (alasan singkat, sebutkan faktor dominan: kebaruan, dampak, atau relevansi)
+  "reason": (alasan singkat, sebutkan faktor dominan: **kebaruan, dampak ekonomi, konflik, relevansi lokal, atau potensi tren**)
 }}
 
 Berikut daftar berita (format: ID | Sektor | Hari Lalu | Sumber | Judul | Summary):
