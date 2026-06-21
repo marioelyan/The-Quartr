@@ -3,8 +3,8 @@ name: Write with Style DNA
 on:
   push:
     paths:
-      - 'Artikel.txt'        # Jalan otomatis saat Artikel.txt di-commit
-  workflow_dispatch:         # Tetap bisa dijalankan manual
+      - 'Artikel.txt'
+  workflow_dispatch:
 
 jobs:
   write-style:
@@ -17,7 +17,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install openai
+        run: |
+          pip install openai requests   # <--- TAMBAHKAN requests
 
       - name: Run write_with_style.py
         env:
@@ -26,7 +27,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python write_with_style.py
 
-      - name: Upload artifact (opsional)
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: styled-articles
