@@ -69,7 +69,9 @@ Tulislah draft artikel berdasarkan berita di bawah ini.
 📌 **STRUKTUR WAJIB (Morning Brew Style):**
 Tulis dalam 3 paragraf yang mengalir, dengan pembagian berikut:
 
-- **Paragraf 1 (TL;DR)**: Apa yang terjadi? Siapa pelakunya? Berapa nilainya? (Fakta mentah).
+- **Paragraf 1 (TL;DR)**: 
+  Apa yang terjadi? Siapa pelakunya? Berapa nilainya? (Fakta mentah).
+  **WAJIB:** Sebutkan angka, nama perusahaan, dan waktu kejadian secara eksplisit.
 
 - **Paragraf 2 (Dampak)**: 
   **Tujuan:** Menjelaskan secara logis dan terstruktur mengapa peristiwa ini penting.
@@ -80,8 +82,20 @@ Tulis dalam 3 paragraf yang mengalir, dengan pembagian berikut:
   **LARANGAN:** Jangan menulis kalimat general seperti "Ini penting karena..." tanpa menyebutkan siapa dan apa dampaknya.
 
 - **Paragraf 3 (Gambaran Besar)**: 
-  Apa implikasi jangka panjang? Bagaimana tren ke depannya? (Spekulasi berbasis fakta).
-  **WAJIB:** Akhiri dengan 1 kalimat yang merujuk pada tren global atau perbandingan dengan industri lain.
+  **Tujuan:** Menempatkan berita dalam konteks tren yang lebih luas, tanpa melompat ke spekulasi liar.
+  **WAJIB mengikuti 3 langkah ini secara berurutan:**
+  1. **Apa tren global yang sedang terjadi?** (Hubungkan dengan fenomena serupa di industri atau negara lain).
+  2. **Apa kemungkinan langkah selanjutnya dari pelaku utama?** (Berdasarkan fakta yang sudah ada, bukan tebakan kosong).
+  3. **Apa artinya ini bagi industri/ekosistem dalam 1-2 tahun ke depan?** (Tetap berbasis logika, bukan fiksi).
+  **LARANGAN:**
+  - Jangan menulis "Ke depannya, kita akan melihat..." tanpa menyebutkan subjek yang jelas.
+  - Jangan menulis "Tren ini menunjukkan..." tanpa didukung fakta dari berita.
+  - Jangan membuat prediksi yang terlalu jauh (>5 tahun) atau terlalu spekulatif (misal: "Ini bisa mengubah dunia").
+
+📌 **CONTOH PARAGRAF GAMBARAN BESAR YANG BAIK (Referensi):**
+--- MULAI CONTOH ---
+"Langkah Amazon ini sejalan dengan tren perusahaan cloud besar yang mulai mengembangkan chip sendiri. Google dan Microsoft juga telah melakukannya. Ke depannya, persaingan di pasar chip AI kemungkinan akan semakin ketat, dengan harga yang lebih kompetitif dan lebih banyak pilihan bagi konsumen. Dalam 1-2 tahun ke depan, kita mungkin melihat Nvidia mulai merespons dengan strategi harga atau inovasi baru."
+--- AKHIR CONTOH ---
 
 📌 **CONTOH PARAGRAF DAMPAK YANG BAIK (Referensi):**
 --- MULAI CONTOH ---
@@ -93,8 +107,9 @@ Tulis dalam 3 paragraf yang mengalir, dengan pembagian berikut:
 2. **HARAM** menambahkan opini, sindiran, atau kata-kata "menarik", "fantastis", "luar biasa".
 3. **HARAM** menggunakan frasa template seperti "Di sisi lain", "Ke depannya", "Tidak hanya... tapi juga".
 4. **HARAM** memulai paragraf dampak dengan "Ini penting karena..." atau "Hal ini berdampak..." tanpa menyebut subjek spesifik.
-5. Tulis seperti laporan keuangan: **Kering, Padat, dan Objektif**, tapi tetap **logis dan terstruktur**.
-6. Panjang total: 250-300 kata.
+5. **HARAM** memulai paragraf gambaran besar dengan "Tren ini menunjukkan..." tanpa didukung fakta.
+6. Tulis seperti laporan keuangan: **Kering, Padat, dan Objektif**, tapi tetap **logis dan terstruktur**.
+7. Panjang total: 250-300 kata.
 
 📰 DATA BERITA:
 Judul: {article['title']}
