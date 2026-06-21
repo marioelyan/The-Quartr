@@ -1,0 +1,378 @@
+Style DNA
+
+MORNING BREW STYLE DNA (BAHASA INDONESIA)
+
+IDENTITAS
+
+Tulisan harus terasa seperti:
+“Seseorang yang sangat memahami bisnis dan teknologi sedang menjelaskan berita penting kepada teman cerdasnya saat minum kopi.”
+
+Bukan:
+
+* Jurnalis koran
+* Analis riset
+* Humas perusahaan
+* Akademisi
+
+⸻
+
+TUJUAN UTAMA
+
+Mengubah berita bisnis, teknologi, ekonomi, dan startup menjadi:
+
+* mudah dipahami
+* menghibur
+* relevan
+* layak dibaca sampai akhir
+
+Prioritas:
+
+1. Menarik
+2. Jelas
+3. Informatif
+
+Bukan:
+
+1. Lengkap
+2. Formal
+3. Akademis
+
+⸻
+
+STRUKTUR WAJIB
+
+HOOK
+
+↓
+
+BERITA INTI
+
+↓
+
+KENAPA INI TERJADI
+
+↓
+
+DAMPAK NYATA
+
+↓
+
+GAMBARAN BESAR
+
+↓
+
+APA YANG AKAN TERJADI SELANJUTNYA
+
+⸻
+
+HOOK
+
+Paragraf pertama adalah senjata utama.
+
+Harus memenuhi salah satu:
+
+* analogi
+* ironi
+* fakta mengejutkan
+* perbandingan tidak terduga
+* observasi lucu
+
+Contoh:
+
+“Operator telekomunikasi dulu menjual sinyal. Sekarang mereka ingin menjual kecerdasan.”
+
+“Jika data adalah minyak baru, perusahaan telekomunikasi baru saja membeli kilang.”
+
+“Paket data mungkin masih dijual per gigabyte. Tetapi perang berikutnya akan dihitung dalam model AI.”
+
+Jangan pernah membuka dengan:
+
+* tanggal
+* lokasi
+* nama perusahaan
+* angka statistik
+
+⸻
+
+PARAGRAF
+
+Ideal:
+
+1–3 kalimat
+
+Hindari:
+
+blok teks panjang
+
+Setiap paragraf harus menyampaikan satu ide.
+
+⸻
+
+KALIMAT
+
+80% kalimat:
+
+10–20 kata
+
+20% kalimat:
+
+sangat pendek
+
+Contoh:
+
+“Dan itulah masalahnya.”
+
+“Angka itu tidak kecil.”
+
+“Di sinilah permainan berubah.”
+
+Kalimat pendek digunakan sebagai rem dan akselerator ritme.
+
+⸻
+
+PENJELASAN
+
+Gunakan rumus:
+
+Konsep → Dampak
+
+Bukan:
+
+Konsep → Detail → Detail → Detail
+
+Contoh buruk:
+
+“AI digunakan untuk network optimization dan customer service automation.”
+
+Contoh baik:
+
+“AI bisa mendeteksi gangguan jaringan sebelum pelanggan menyadarinya.”
+
+⸻
+
+CONTOH
+
+Setiap ide abstrak harus diterjemahkan menjadi contoh konkret.
+
+Jangan:
+
+“Perusahaan akan lebih efisien.”
+
+Tulis:
+
+“Jika ribuan pertanyaan pelanggan dijawab chatbot, biaya call center bisa turun drastis.”
+
+⸻
+
+ANGKA
+
+Jangan menumpuk angka.
+
+Pilih maksimal 2–3 angka penting.
+
+Jika angka besar:
+
+beri konteks.
+
+Contoh:
+
+Buruk:
+
+“500 juta pelanggan.”
+
+Baik:
+
+“Lebih banyak orang daripada seluruh populasi Amerika Serikat dan Indonesia digabung.”
+
+⸻
+
+TRANSISI
+
+Gunakan transisi percakapan.
+
+Contoh:
+
+“Tapi ada masalah.”
+
+“Masalahnya tidak berhenti di sana.”
+
+“Dan pesaing tentu memperhatikan.”
+
+“Sementara itu…”
+
+“Pertanyaannya sekarang adalah…”
+
+⸻
+
+NADA
+
+70% serius
+
+20% cerdas
+
+10% jenaka
+
+Humor harus muncul dari observasi.
+
+Bukan dari lelucon yang dipaksakan.
+
+⸻
+
+PERSPEKTIF
+
+Selalu jawab:
+
+“Mengapa pembaca harus peduli?”
+
+Jika tidak ada jawaban yang jelas,
+berita belum selesai ditulis.
+
+⸻
+
+GAMBARAN BESAR
+
+Setelah fakta utama:
+
+zoom out.
+
+Tunjukkan tren yang lebih besar.
+
+Contoh:
+
+“Ini bukan sekadar langkah Reliance. Ini bagian dari transformasi industri telekomunikasi global.”
+
+Pembaca harus merasa:
+
+“Saya mengerti arah dunia bergerak.”
+
+⸻
+
+PENUTUP
+
+Jangan mengulang berita.
+
+Tutup dengan:
+
+* prediksi
+* implikasi
+* pertanyaan strategis
+
+Contoh:
+
+“Beberapa tahun lalu operator telekomunikasi bersaing soal harga data. Beberapa tahun lagi, mereka mungkin bersaing soal siapa yang memiliki AI paling pintar.”
+
+⸻
+
+LARANGAN
+
+Jangan gunakan:
+
+* berdasarkan
+* sejalan dengan
+* dalam rangka
+* guna meningkatkan
+* oleh karena itu
+* adapun
+* sebagaimana diketahui
+
+Jangan terdengar seperti:
+
+* siaran pers
+* laporan tahunan
+* artikel SEO
+* makalah kampus
+
+⸻
+
+CONTOH ARTIKEL SEBAGAI REFERENSI
+
+1. Prediction markets, which allow people to wager on the outcome of real-world events, have exploded in popularity in the past couple of years. It turns out, a lot of people were itching to bet on elections, the temperature in Kuala Lumpur, and how often Elon Musk might tweet in one week.
+
+Kalshi controls more than 90% of the US prediction market and has annualized revenue exceeding $1.5 billion. The growth is staggering. According to a Pew Research Center analysis of data from digital assets firm The Block, when you look at Kalshi and the other big dog, Polymarket, their combined global trading volume was:
+
+$4.5 billion in September 2025.
+$24~ billion in April 2026.
+Like the TV at your grandparents’ house, that high level of volume is hard to ignore. Investor interest drove Kalshi’s valuation from $11 billion in December to $22 billion about six months later, per the Wall Street Journal. And Polymarket, reportedly valued at $350 million in 2024, was recently in talks to raise money at a $15 billion valuation, according to The Information.
+
+Do bettors actually make any money?
+
+Kalshi and Polymarket have millions of users, but only a tiny percentage make it big. A Wall Street Journal analysis found that:
+
+Sixty-seven percent of Polymarket’s profits go to just 0.1% of accounts.
+The average Polymarket user has lost between $1 and $100. The bottom 10% of users are down about $4,000 each.
+For every Kalshi user who makes money, there are 2.9 unprofitable users, the company said.
+The wager gap: The average prediction market user skews young, and 71% are men, according to a Morning Consult study. Sports, cryptocurrency, and politics are the hottest topics, per Pew.
+
+The future of predictions: Investment firm Bernstein forecast that prediction market trading volume will hit $1 trillion (yes, with a “t”) per year by 2030.—BC
+
+2. The government wants to know: Is The Traitors really a game? Does The Masked Singer involve luck, skill, or athletic ability? And, most importantly, should you be able to bet on Survivor?
+
+The Commodity Futures Trading Commission (CFTC), the independent government agency that regulates prediction markets, announced last week that it was seeking public comment to further define where reality game shows fall under its jurisdiction.
+
+And clarity is needed, because prediction markets have spoiled several high-profile reality show moments in recent months, frustrating producers and fans. Legendary Survivor host Jeff Probst told Variety that Kalshi and Polymarket are “incentivizing people to lie, cheat, and steal.” Insider trading could be to blame:
+
+Aubry Bracco, who won Survivor 50, had a 61% chance of winning the season before it premiered. By the time the finale aired, $32.7 million had been bet on Bracco, boosting her chances to 97%.
+Kalshi even sent a push notification to users before the finale with the message “Survivor S50 finale TONIGHT. Aubry’s at 97% — is the island already decided?”
+Kalshi said it investigated the bets and found no evidence of insider trading, which is banned on the site.
+Other pretaped reality shows, like The Masked Singer and Next Level Chef, had their victors correctly predicted before their finales aired.
+
+It’s like whack-a-mole. Prediction markets are reaching every corner of entertainment: Polymarket partnered with the Golden Globes earlier this year and correctly picked 26 out of the 28 winners.—MM
+
+3.  US–Iran talks delayed due to Lebanon clashes. Vice President JD Vance postponed a planned trip to Switzerland for nuclear talks with Iranian officials that were slated to begin yesterday, after Iran insisted that Israeli strikes on Hezbollah in Lebanon must stop before the talks can begin. Iran maintains that Lebanon must be part of any peace deal, but Israel has said it will continue to have a presence there. The situation in Lebanon escalated overnight before the planned talks, as Hezbollah launched a drone attack that killed four Israeli soldiers, and Israel retaliated with more than 150 strikes. Following the delay of the talks, US officials said the ceasefire between Israel and Hezbollah was back on.
+
+ UK election sets up leadership fight. Though no formal leadership challenge has begun yet, an ambitious Labour Party politician’s victory in a special election yesterday may have set the UK on course to have its sixth prime minister in seven years. The win puts Manchester Mayor Andy Burnham in Parliament, where he can try to unseat the unpopular Prime Minister Keir Starmer as head of the Labour Party and therefore as the country’s leader. Starmer vowed not to quit, saying, “I don’t think that is a good thing for the country, to plunge us into chaos.”
+
+ Amazon drops film about Sam Altman after investing in OpenAI. Amazon MGM Studios has dropped Luca Guadagnino’s nearly finished movie Artificial, starring Andrew Garfield as OpenAI CEO Altman, which will now be shopped to other studios. Amazon said the movie “will be better served if it were released by a different studio” and that it’s “working closely with the filmmaking team to find the film a new home.” But the timing of the decision raised more Hollywood eyebrows than Botox, as it comes months after Amazon agreed to invest $50 billion in OpenAI as part of a partnership that also accelerates OpenAI’s use of Amazon Web Services.—AR
+
+
+4. New Fed Chair Kevin Warsh announced yesterday that the Fed voted unanimously to hold interest rates steady in the 3.50%–3.75% range. But things might not stay steady for long. Even though Warsh was nominated by President Trump with an expectation that he would lower interest rates quickly, the central bank signaled that rates might actually go up this year.
+
+A lot has changed since Warsh was nominated: Since he was chosen as the new chair by President Trump in February, the war in Iran turned inflation red-hot. This led to Trump telling Warsh in May to “do your own thing”...and that thing was keeping rates the same (for now).
+
+Now, rate hikes seem more likely: Yesterday, nine of 19 officials projected a rate hike coming this year after none did so in March. That increased the odds of two rate hikes in 2026 from 17% on Tuesday to 37% yesterday, per CME Group, and set markets tumbling following Warsh’s afternoon press conference.
+
+Warsh wants other changes
+
+While rates are not changing right away, how the Fed gathers and interprets economic data and how extensively it communicates with the public will receive deep examination:
+
+Warsh is forming five task forces to look at Fed operations. These committees will examine communications, economic data that relies on “old-fashioned survey methods,” and artificial intelligence’s potential impact on growth without heating up inflation.
+The new chair broke from past practices and abstained from offering his input on a “dot plot” rate forecast for the rest of the year, leaving forward guidance out of the report.
+When asked about the central bank’s long-held goal of 2% inflation, Warsh said it didn’t need to be revisited until after it was reached.
+There was some good economic news: He concluded his first Q&A with reporters by saying Fed officials see labor markets as stable—unemployment has held at 4.3% for three straight months as of May—with some saying they were “trending better than that.”—DL
+
+
+5.  Trump scuttles quick confirmation of his national intelligence pick. The Senate was scheduled to hold a confirmation hearing yesterday for former Securities and Exchange Commission head Jay Clayton. But President Trump—who nominated Clayton after his interim choice for the role, Bill Pulte, proved controversial—pulled the plug on that hours before it was slated to happen. In a Truth Social post, Trump said there’d be no hearing until Clayton’s replacement as a prosecutor was confirmed. Clayton’s nomination had paved the way for the renewal of FISA surveillance powers, which Democrats and some Republicans objected to with Pulte in the role. But Trump’s post said he wouldn’t sign off on the FISA extension unless lawmakers also approved an unrelated voting bill he wants passed.
+
+ Luigi Mangione to use psychiatric defense at state murder trial. Mangione’s attorneys plan to claim he was suffering from extreme emotional disturbance when he fatally shot UnitedHealthcare CEO Brian Thompson on the street in New York City in December 2024. Even if a jury accepts that defense (which is not the same as an insanity defense), it wouldn’t keep Mangione out of prison, though it could mean he would serve 25 years rather than a life sentence if he is found guilty. The state trial is scheduled to begin on Sept. 8, and Mangione is also facing a federal trial where this defense is not available.
+
+ Allbirds ditches its name after pivoting to AI. Underscoring its recent abrupt shift from making the sneakers worn by tech workers to focusing on actual AI tech, Allbirds rebranded itself yesterday as Smartbird Inc. (after its previous change to NewBird AI in April). It also tapped Nadia Carlsten, who formerly headed a Danish AI infrastructure group, as its new CEO. The move helps put shoes in the rearview mirror with the sale of its Allbirds brand and footwear assets now complete. And Carlsten is not looking back: “I’m more of a high heels person myself,” Carlsten told Business Insider. “I’m blissfully unaware of all things Allbirds.” The news sent the former footwear company’s stock up 39% yesterday.—AR
+
+
+6. Yesterday, the US officially released the “memorandum of understanding” reached with Iran, a 14-point list of provisions that President Trump and Iranian President Masoud Pezeshkian also electronically signed yesterday. The document is expected to kick off negotiations on a final settlement in Switzerland tomorrow.
+
+In exchange for Iran reopening the Strait of Hormuz and pledging not to procure or develop nuclear weapons, the agreement outlines a number of economic benefits:
+
+It establishes a $300 billion fund to help rebuild the country, though President Trump said the US would not contribute to it.
+The US will waive all sanctions on Iran and unfreeze funds if the country meets the US’ nuclear terms.
+In what’s viewed as a big win for Iran, it is allowed to sell oil immediately.
+Trump said he was motivated to make a deal to avoid being compared to Herbert Hoover, who was president during the 1929 stock market crash that preceded the Great Depression. “I didn’t want to see an economic catastrophe,” Trump said.
+
+Iran and the US have 60 days to finalize negotiations, which will likely focus on Iran’s nuclear program in the long term.
+
+Looking ahead: President Trump told the press that he may pass responsibility for the deal to Vice President JD Vance, saying, “If it works out, I’m going to take the credit. If it doesn’t work out, I’m blaming JD.”—MM
+
+
+7. It sounds like any kidult’s dream: This week, Carvana unveiled its first “new-car playground,” a salespersonless pseudo-dealership in Dallas where it’ll test out a more relaxed method of car-selling than the auto industry is used to. True to Carvana’s roots, all purchases still have to happen online.
+
+There are no monkey bars, just themed outdoor areas for each car brand. Jeeps perch on off-road displays, Dodges have fake racetracks, and Chrysler minivans guard a soccer net. One of the biggest differences from traditional car-buying, though, is that nobody is supposed to follow you around:
+
+Customers can scan QR codes to get information about cars and request test drives.
+Staff is there to answer questions, but they’re not salespeople—they earn hourly wages and no commission.
+This model could be a win-win. Most customers prefer a blend of online and in-person interactions when buying a car, according to recent Cox Automotive data. And for Carvana, payroll at playground locations could be far below typical dealerships, an industry expert told the Wall Street Journal.
+
+Carvana is making inroads. After building its business on used-car sales, the company has purchased seven Stellantis-franchised dealerships since February 2025—one of which became Stellantis’s top-selling US location. More new-vehicle sales will also help Carvana’s loan business, which accounts for most of its profits.—ML
+
+⸻
+TES AKHIR
+
+Jika pembaca bisa memahami berita dalam 90 detik dan menceritakannya kembali kepada teman dalam 30 detik, artikel berhasil.
