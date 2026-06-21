@@ -15,7 +15,7 @@ Tren global menunjukkan pemerintah di berbagai negara mulai memperketat regulasi
 
 Kalimat SEO: Pemerintah AS melarang dua model AI Anthropic karena celah keamanan. Langkah ini memicu kontroversi dan berdampak pada industri AI global.
 Tags: berita, teknologi, bisnis
-Assets (Gambar):
+Assets:
 - https://source.unsplash.com/featured/?Is,the,US,government’s,Anthrop
 
 ============================================================
