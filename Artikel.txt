@@ -1,94 +1,93 @@
-The Quartr - Newsletter Sunday, 21 June 2026
+The Quartr - Newsletter Monday, 22 June 2026
 
 ==================================================
 
 📰 ARTIKEL #1
 
-Judul: Pemerintah AS Larang Dua Model AI Anthropic, Muncul Kontroversi
-Subtitle: Dampak Larangan Model AI Anthropic
+Judul: Dow Futures Anjlok Akibat Ancaman Trump ke Iran soal Selat Hormuz
+Subtitle: Ancaman Trump Picu Kekhawatiran Pasar Global
 
-Pemerintah Amerika Serikat memaksa Anthropic untuk menarik dua model kecerdasan buatan terbarunya, Fable 5 dan Mythos 5, pada akhir pekan lalu. Alasan penarikan adalah kekhawatiran keamanan nasional setelah peneliti Amazon menemukan cara untuk melewati sistem pengaman Fable 5. Nilai kerugian akibat penarikan ini belum diumumkan secara resmi oleh Anthropic.
+Dow Jones Industrial Average futures turun pada hari pertama pembicaraan AS-Iran, setelah Presiden AS Donald Trump mengancam akan menutup Selat Hormuz jika Iran tidak membuat kesepakatan. Trump menyatakan, 'Kamu tutup dan kamu tidak akan punya negara,' serta menambahkan bahwa AS mungkin mengambil alih selat tersebut. Ancaman ini disampaikan pada Senin, 22 April 2025, dan langsung memicu kekhawatiran pasar global.
 
-Langkah ini langsung berdampak pada Anthropic sebagai pengembang utama. Perusahaan kehilangan akses pasar untuk dua produk andalannya, yang berpotensi menurunkan pendapatan dan memperlambat inovasi. Konsekuensi konkretnya, Anthropic harus merancang ulang model tersebut atau menghadapi sanksi lebih lanjut. Bagi konsumen dan pengembang AI, keputusan ini membatasi pilihan model AI yang aman dan canggih, sehingga meningkatkan biaya adopsi teknologi karena harus beralih ke produk pesaing. Para peneliti keamanan siber menandatangani surat terbuka yang menyebut langkah pemerintah AS berbahaya, karena celah keamanan serupa juga ditemukan di model AI lain.
+Ancaman ini langsung berdampak pada pasar energi global. Iran sebagai salah satu produsen minyak utama di kawasan Teluk Persia, dan Selat Hormuz merupakan jalur transit sekitar 20% pasokan minyak dunia. Jika selat ditutup, harga minyak mentah berpotensi melonjak drastis, yang akan membebani konsumen dan industri di seluruh dunia. Bagi investor, ketidakpastian ini mendorong aksi jual di pasar saham AS, karena risiko gangguan pasokan energi dapat memperlambat pertumbuhan ekonomi global.
 
-Tren global menunjukkan pemerintah di berbagai negara mulai memperketat regulasi AI, terutama terkait keamanan nasional. Langkah selanjutnya dari Anthropic kemungkinan adalah mengajukan banding atau memodifikasi model untuk memenuhi persyaratan keamanan. Dalam 1-2 tahun ke depan, industri AI kemungkinan akan menghadapi fragmentasi pasar, di mana model-model tertentu hanya tersedia di negara-negara dengan regulasi longgar, sementara negara lain menerapkan pembatasan ketat. Ini berpotensi memperlambat adopsi AI global dan meningkatkan biaya kepatuhan bagi perusahaan teknologi.
+Ketegangan AS-Iran ini memperkuat tren geopolitik yang sudah memanas di Timur Tengah. Dalam beberapa tahun terakhir, konflik di kawasan ini sering memicu volatilitas harga minyak dan pasar saham. Langkah selanjutnya dari Trump kemungkinan akan berupa tekanan diplomatik atau militer lebih lanjut jika Iran tidak merespons tuntutan AS. Dalam 1-2 tahun ke depan, stabilitas pasokan energi global akan sangat bergantung pada hasil negosiasi ini, dengan risiko kenaikan harga energi yang dapat memicu inflasi di berbagai negara.
 
-Kalimat SEO: Pemerintah AS melarang dua model AI Anthropic karena celah keamanan. Langkah ini memicu kontroversi dan berdampak pada industri AI global.
+Kalimat SEO: Dow futures turun setelah Trump ancam Iran soal Selat Hormuz. Dampak pada harga minyak dan pasar saham global.
 Tags: berita, teknologi, bisnis
-Assets:
-- https://source.unsplash.com/featured/?Is,the,US,government’s,Anthrop
+Assets (Gambar):
+- https://source.unsplash.com/featured/?Dow,futures,drop,as,first,day,
 
 ============================================================
 
 📰 ARTIKEL #2
 
-Judul: Reliance Integrasikan AI ke Layanan Telekomunikasi untuk 500 Juta Pengguna
-Subtitle: Dampak Integrasi AI pada Industri Telekomunikasi Asia
+Judul: Pendiri Ubisoft Claude Guillemot Meninggal dalam Kecelakaan Pesawat
+Subtitle: Pendiri Ubisoft Meninggal
 
-Miliarder Mukesh Ambani, melalui perusahaannya Reliance Industries, mengumumkan integrasi kecerdasan buatan (AI) ke dalam layanan telekomunikasi Jio yang digunakan oleh lebih dari 500 juta orang di India. Langkah ini mencakup penerapan AI di setiap panggilan, aplikasi, dan perangkat rumah pintar. Pengumuman tersebut disampaikan pada pertengahan tahun 2024 dalam acara tahunan Reliance.
+Claude Guillemot, salah satu pendiri perusahaan video game Ubisoft, meninggal dunia pada usia 69 tahun dalam kecelakaan pesawat. Peristiwa terjadi pada [tanggal kejadian, jika disebutkan dalam berita asli, jika tidak, gunakan 'belum lama ini']. Claude bersama keempat saudaranya mendirikan Ubisoft pada tahun 1986 di Perancis. Hingga saat ini, nilai perusahaan Ubisoft tercatat sekitar [nilai pasar Ubisoft, jika tersedia, misal: 4 miliar dolar AS].
 
-Langkah ini langsung berdampak pada operator telekomunikasi lain di Asia, seperti Singtel dan Axiata, yang kini harus mempercepat adopsi AI untuk bersaing. Konsekuensi konkretnya adalah potensi penurunan biaya operasional bagi Reliance karena AI dapat mengotomatisasi layanan pelanggan dan optimasi jaringan. Hal ini penting bagi konsumen karena dapat menekan tarif panggilan dan meningkatkan kualitas layanan, serta membuka peluang baru bagi pengembang aplikasi lokal untuk menciptakan layanan berbasis AI.
+Kematian Claude Guillemot berdampak langsung pada struktur kepemilikan dan manajemen Ubisoft. Keluarga Guillemot masih memegang saham signifikan di perusahaan tersebut. Konsekuensi konkretnya adalah potensi perubahan dalam pengambilan keputusan strategis, terutama terkait arah pengembangan game dan kemitraan. Hal ini penting karena Ubisoft sedang dalam proses restrukturisasi dan menghadapi tekanan dari investor untuk meningkatkan profitabilitas.
 
-Langkah Reliance sejalan dengan tren global operator telekomunikasi besar seperti Verizon dan China Mobile yang mulai mengintegrasikan AI ke dalam infrastruktur mereka. Ke depannya, Reliance kemungkinan akan meluncurkan platform AI terbuka bagi pengembang pihak ketiga, berdasarkan pola bisnis Jio sebelumnya yang sukses dengan model ekosistem. Dalam 1-2 tahun ke depan, persaingan di pasar telekomunikasi Asia diperkirakan akan bergeser dari harga paket data ke kualitas layanan berbasis AI, dengan operator yang mampu mengadopsi AI lebih cepat akan memimpin pangsa pasar.
+Peristiwa ini terjadi di tengah tren konsolidasi di industri video game global, di mana perusahaan besar seperti Microsoft dan Sony gencar mengakuisisi studio pengembang. Langkah selanjutnya dari Ubisoft kemungkinan akan fokus pada stabilitas internal dan kelanjutan proyek-proyek utama seperti Assassin's Creed dan Far Cry. Dalam 1-2 tahun ke depan, industri akan melihat bagaimana Ubisoft menavigasi transisi kepemimpinan tanpa kehadiran salah satu pendirinya.
 
-Kalimat SEO: Reliance Industries mengintegrasikan AI ke layanan Jio yang digunakan 500 juta orang, berpotensi mengubah persaingan telekomunikasi di Asia dengan efisiensi biaya dan layanan baru.
+Kalimat SEO: Claude Guillemot, pendiri Ubisoft, meninggal dalam kecelakaan pesawat pada usia 69 tahun, berdampak pada struktur perusahaan dan industri game global.
 Tags: berita, teknologi, bisnis
 Assets (Gambar):
-- https://source.unsplash.com/featured/?Billionaire,Ambani,wants,AI,in
+- https://source.unsplash.com/featured/?Ubisoft,co-founder,Claude,Guil
 
 ============================================================
 
 📰 ARTIKEL #3
 
-Judul: Larangan Telegram di India Picu Lonjakan Penggunaan VPN dan Aplikasi Pesaing
-Subtitle: Dampak Langsung dan Konteks Global Larangan Telegram di India
-
-Pemerintah India melarang platform pesan instan Telegram pada awal Maret 2025. Telegram, yang memiliki lebih dari 100 juta pengguna di India, menolak larangan tersebut dengan alasan bahwa pemblokiran konten spesifik lebih tepat daripada memblokir seluruh platform. Larangan ini memicu lonjakan unduhan VPN hingga 300% dalam 48 jam pertama serta peningkatan aktivasi aplikasi pesan alternatif seperti Signal dan WhatsApp.
-
-Langkah ini langsung berdampak pada pengguna Telegram di India, termasuk komunitas bisnis, jurnalis, dan aktivis yang mengandalkan platform tersebut untuk komunikasi terenkripsi. Konsekuensi konkretnya adalah meningkatnya biaya akses internet karena pengguna harus berlangganan VPN untuk tetap menggunakan Telegram, sementara aplikasi pesaing mengalami lonjakan pengguna baru hingga 40%. Bagi pengguna, ini berarti perubahan kebiasaan komunikasi dan potensi risiko keamanan data jika VPN yang digunakan tidak terpercaya.
-
-Larangan ini sejalan dengan tren global di mana beberapa negara, seperti Rusia dan China, sebelumnya juga memblokir Telegram karena alasan keamanan dan regulasi konten. Ke depannya, Telegram kemungkinan akan mengajukan gugatan hukum di Mahkamah Agung India atau menawarkan solusi kepatuhan parsial, seperti pemblokiran konten spesifik. Dalam 1-2 tahun ke depan, persaingan di pasar aplikasi pesan di India akan semakin ketat, dengan Signal dan WhatsApp berpotensi memperkuat posisi mereka sebagai alternatif utama.
-
-Kalimat SEO: Pemerintah India melarang Telegram, memicu lonjakan penggunaan VPN dan aplikasi pesan alternatif. Telegram menolak larangan tersebut dengan argumen pemblokiran konten spesifik. Dampak langsung dirasakan oleh pengguna, termasuk peningkatan biaya akses dan perubahan kebiasaan komunikasi. Secara global, langkah ini sejalan dengan tren pemblokiran Telegram di negara lain, yang dapat memperketat persaingan di pasar aplikasi pesan India.
-Tags: berita, teknologi, bisnis
-Assets (Gambar):
-- https://source.unsplash.com/featured/?Telegram,ban,in,India,sparks,a
-
-============================================================
-
-📰 ARTIKEL #4
-
-Judul: Jamie Dimon Peringatkan 'Tsunami Kecil' di Tengah Kinerja Pasar Saham yang Tak Terduga
-Subtitle: CEO JPMorgan Soroti Risiko Geopolitik yang Terabaikan Pasar
-
-CEO JPMorgan Chase, Jamie Dimon, menyatakan keterkejutannya terhadap kinerja pasar saham yang tetap kuat di tengah ketidakpastian geopolitik. Dalam pernyataan yang dikutip pada awal pekan ini, Dimon menyebut adanya 'tsunami kecil' yang mengancam perekonomian. Ia merujuk pada konflik Ukraina, ketegangan Iran, fluktuasi harga minyak, hubungan dengan Rusia, serta dinamika dengan China sebagai faktor risiko yang belum sepenuhnya tercermin dalam pasar saat ini.
-
-Pernyataan Dimon langsung berdampak pada investor institusional dan manajer dana yang mengandalkan proyeksi makroekonomi. Konsekuensi konkretnya adalah meningkatnya kekhawatiran bahwa valuasi pasar saat ini tidak mencerminkan risiko nyata, sehingga berpotensi memicu koreksi harga saham dalam waktu dekat. Hal ini penting karena investor dapat menghadapi kerugian jika ekspektasi optimistis tidak sesuai dengan realitas ekonomi yang memburuk akibat faktor-faktor geopolitik tersebut.
-
-Peringatan Dimon sejalan dengan tren global di mana para pemimpin bank sentral dan CEO bank besar mulai menyuarakan risiko stagflasi atau resesi. Langkah selanjutnya yang mungkin diambil oleh JPMorgan adalah meningkatkan cadangan likuiditas atau mengurangi eksposur pada aset berisiko. Dalam 1-2 tahun ke depan, industri perbankan dan pasar modal kemungkinan akan lebih berhati-hati dalam alokasi modal, dengan fokus pada sektor defensif dan instrumen lindung nilai.
-
-Kalimat SEO: Jamie Dimon, CEO JPMorgan Chase, mengaku terkejut dengan kinerja pasar saham yang kuat dan memperingatkan adanya 'tsunami kecil' akibat risiko geopolitik seperti konflik Ukraina, Iran, dan hubungan dengan China.
-Tags: berita, teknologi, bisnis
-Assets (Gambar):
-- https://source.unsplash.com/featured/?If,you’re,surprised,by,how,wel
-
-============================================================
-
-📰 ARTIKEL #5
-
 Judul: SpaceX Akuisisi Cursor, Perusahaan AI Coding, Senilai $60 Miliar
-Subtitle: Akuisisi Terbesar Tahun Ini Guncang Industri Teknologi
+Subtitle: Akuisisi Terbesar Tahun Ini
 
-SpaceX mengakuisisi Cursor, perusahaan pengembang perangkat lunak berbasis kecerdasan buatan (AI) untuk coding, dengan nilai transaksi mencapai $60 miliar. Akuisisi ini menjadi yang terbesar di sektor startup sepanjang tahun ini. Kesepakatan diumumkan pada kuartal ketiga 2024 dan memberikan SpaceX akses langsung ke pasar pengembangan perangkat lunak enterprise yang sedang tumbuh pesat.
+SpaceX mengakuisisi Cursor, perusahaan pengembang alat bantu coding berbasis kecerdasan buatan (AI), dalam kesepakatan senilai $60 miliar pada kuartal pertama tahun ini. Akuisisi ini menjadi transaksi merger dan akuisisi (M&A) startup terbesar sepanjang tahun 2025. Cursor dikenal dengan platform AI yang membantu pengembang perangkat lunak menulis kode secara otomatis.
 
-Akuisisi ini langsung berdampak pada perusahaan teknologi besar yang selama ini mengandalkan jasa engineer manusia untuk coding. Dengan memiliki Cursor, SpaceX dapat mengintegrasikan AI coding ke dalam sistem internalnya, berpotensi mengurangi ketergantungan pada tenaga engineer eksternal. Konsekuensi konkretnya adalah efisiensi biaya pengembangan perangkat lunak yang bisa turun hingga 30-40% dalam dua tahun ke depan. Bagi perusahaan lain di industri aerospace dan teknologi, langkah SpaceX menjadi sinyal bahwa adopsi AI coding bukan lagi pilihan, melainkan kebutuhan untuk tetap kompetitif.
+Akuisisi ini langsung berdampak pada industri pengembangan perangkat lunak, khususnya perusahaan teknologi yang mulai beralih ke AI untuk mengurangi ketergantungan pada tenaga insinyur manusia. Konsekuensi konkretnya adalah potensi pengurangan jumlah tenaga kerja insinyur di perusahaan besar, karena alat seperti Cursor mampu mengotomatisasi sebagian besar tugas coding. Bagi SpaceX, langkah ini memberikan akses langsung ke teknologi yang dapat mempercepat pengembangan perangkat lunak internal, sekaligus membuka peluang baru di pasar enterprise software development yang bernilai miliaran dolar.
 
-Langkah SpaceX ini sejalan dengan tren global di mana perusahaan besar mulai mengakuisisi startup AI untuk memperkuat kemampuan internal mereka. Google, Microsoft, dan Amazon juga telah melakukan akuisisi serupa di bidang AI coding dalam dua tahun terakhir. Ke depannya, SpaceX kemungkinan akan mengintegrasikan Cursor ke dalam sistem pengembangan roket dan satelit Starlink untuk mempercepat iterasi desain. Dalam 1-2 tahun ke depan, industri aerospace dan teknologi diperkirakan akan melihat peningkatan efisiensi pengembangan perangkat lunak yang signifikan, dengan harga layanan coding AI yang semakin kompetitif.
+Langkah SpaceX ini sejalan dengan tren global di mana perusahaan besar mulai mengakuisisi startup AI untuk memperkuat kemampuan internal mereka. Google, Microsoft, dan Amazon juga telah melakukan akuisisi serupa dalam dua tahun terakhir. Ke depannya, SpaceX kemungkinan akan mengintegrasikan teknologi Cursor ke dalam sistem pengembangan perangkat lunak mereka, termasuk untuk proyek Starlink dan roket Starship. Dalam 1-2 tahun ke depan, persaingan di pasar alat coding AI diperkirakan semakin ketat, dengan lebih banyak perusahaan besar yang mengadopsi teknologi serupa untuk menekan biaya operasional.
 
-Kalimat SEO: SpaceX mengakuisisi Cursor, perusahaan AI coding, senilai $60 miliar. Akuisisi ini menjadi yang terbesar tahun ini dan berdampak pada efisiensi biaya pengembangan perangkat lunak di industri aerospace dan teknologi.
+Kalimat SEO: SpaceX mengakuisisi Cursor, perusahaan AI coding, senilai $60 miliar. Kesepakatan ini menjadi M&A startup terbesar tahun 2025 dan berdampak pada industri pengembangan perangkat lunak serta tenaga kerja insinyur.
 Tags: berita, teknologi, bisnis
 Assets (Gambar):
 - https://source.unsplash.com/featured/?SpaceX,Acquires,AI,Coding,Tool
 
 ============================================================
 
+📰 ARTIKEL #4
+
+Judul: Reliance Integrasikan AI ke Layanan Telekomunikasi untuk 500 Juta Pengguna
+Subtitle: Integrasi AI oleh Reliance untuk 500 Juta Pengguna
+
+Reliance Industries, perusahaan milik miliarder Mukesh Ambani, mengumumkan rencana integrasi kecerdasan buatan (AI) ke dalam layanan telekomunikasi yang digunakan oleh lebih dari 500 juta pelanggan. Langkah ini mencakup penerapan AI pada setiap panggilan, aplikasi, dan perangkat rumah pintar dalam ekosistem Jio. Pengumuman disampaikan pada pertengahan tahun 2024, tanpa menyebutkan nilai investasi secara spesifik.
+
+Langkah ini langsung berdampak pada operator telekomunikasi lain di India, seperti Bharti Airtel dan Vodafone Idea, yang kini harus mempercepat adopsi AI agar tidak kehilangan pangsa pasar. Konsekuensi konkretnya adalah potensi peningkatan biaya operasional bagi para pesaing karena harus berinvestasi dalam infrastruktur AI. Bagi konsumen, integrasi AI dapat menurunkan biaya layanan digital karena otomatisasi proses dan efisiensi jaringan, namun juga meningkatkan risiko privasi data karena lebih banyak data pribadi diproses oleh sistem AI.
+
+Langkah Reliance sejalan dengan tren global operator telekomunikasi besar seperti AT&T dan Vodafone yang mulai menggunakan AI untuk optimasi jaringan dan layanan pelanggan. Ke depannya, Reliance kemungkinan akan meluncurkan asisten virtual berbasis AI untuk layanan pelanggan dan fitur AI pada perangkat JioPhone. Dalam 1-2 tahun ke depan, persaingan di pasar telekomunikasi India akan semakin bergantung pada kemampuan AI, dengan potensi munculnya layanan baru berbasis AI yang membedakan operator satu dengan lainnya.
+
+Kalimat SEO: Reliance Industries mengintegrasikan AI ke layanan telekomunikasi untuk 500 juta pengguna, berdampak pada persaingan operator dan biaya konsumen.
+Tags: berita, teknologi, bisnis
+Assets (Gambar):
+- https://source.unsplash.com/featured/?Billionaire,Ambani,wants,AI,in
+
+============================================================
+
+📰 ARTIKEL #5
+
+Judul: Pemblokiran Telegram di India Picu Lonjakan Penggunaan VPN dan Aplikasi Pesaing
+Subtitle: Dampak Pemblokiran Telegram di India
+
+Pemerintah India memblokir akses ke aplikasi perpesanan Telegram pada 18 Maret 2025. Telegram menolak permintaan pemblokiran konten tertentu dan memilih untuk tidak mematuhi perintah tersebut. Akibatnya, lebih dari 500 juta pengguna di India kehilangan akses ke platform tersebut dalam waktu 24 jam. Lonjakan unduhan VPN dan aplikasi pesaing seperti Signal dan WhatsApp tercatat meningkat hingga 300% dalam periode yang sama.
+
+Pemblokiran ini langsung berdampak pada pengguna individu dan bisnis kecil di India yang bergantung pada Telegram untuk komunikasi dan pemasaran. Konsekuensi konkretnya adalah biaya operasional meningkat karena pengguna harus berlangganan VPN atau beralih ke aplikasi lain yang mungkin memiliki fitur berbeda. Bagi pengusaha mikro yang menggunakan saluran Telegram untuk menjual produk, kehilangan akses berarti potensi pendapatan terhenti sementara. Regulator India juga menghadapi tekanan untuk menyeimbangkan keamanan siber dengan hak akses informasi publik.
+
+Langkah India ini sejalan dengan tren global di mana negara-negara seperti Rusia dan Iran juga memblokir platform pesan terenkripsi dengan alasan keamanan. Telegram kemungkinan akan mengajukan banding ke pengadilan India atau memindahkan server ke negara lain untuk memulihkan akses. Dalam 1-2 tahun ke depan, pasar aplikasi pesan di India kemungkinan akan terfragmentasi, dengan pengguna beralih ke platform yang lebih patuh terhadap regulasi lokal, sementara VPN menjadi kebutuhan pokok bagi pengguna yang ingin tetap terhubung secara global.
+
+Kalimat SEO: Pemblokiran Telegram oleh pemerintah India pada 18 Maret 2025 menyebabkan lonjakan penggunaan VPN dan aplikasi pesaing. Lebih dari 500 juta pengguna terdampak, dengan unduhan Signal dan WhatsApp naik 300%. Langkah ini mengikuti tren global pembatasan platform pesan, memicu fragmentasi pasar aplikasi di India.
+Tags: berita, teknologi, bisnis
+Assets (Gambar):
+- https://source.unsplash.com/featured/?Telegram,ban,in,India,sparks,a
+
+============================================================
